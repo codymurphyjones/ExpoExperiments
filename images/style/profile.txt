@@ -1,0 +1,14 @@
+Follow: #f59e11
+Border: #fce1ab
+
+Components
+
+BackButton
+SearchTickerShare
+UserProfile
+UserProfileHead
+FollowUser
+UserProfileBio
+UserProfileDetails
+ContentPost
+NavigationMenu
