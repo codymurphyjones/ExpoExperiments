@@ -13,6 +13,8 @@ import Profile from './screens/Profile';
 import Trending from './screens/Trending';
 import TabBar from './src/TabBar';
 
+console.reportErrorsAsExceptions = false;
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
