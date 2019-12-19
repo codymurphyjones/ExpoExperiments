@@ -9,6 +9,8 @@ import { ThemeContextProvider } from './src/theme'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MainScreen from './screens/Main';
 import SettingsScreen from './screens/Settings';
+import Profile from './screens/Profile';
+import Trending from './screens/Trending';
 import TabBar from './src/TabBar';
 
 const TabNavigator = createBottomTabNavigator(
@@ -19,41 +21,23 @@ const TabNavigator = createBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon name="home" size={30} color={tintColor} />
         )
-      },
-	  tabBarOptions: {
-		showLabel: false,
-		showIcon: true,
-		tintColor: '#900',
-		activeTintColor: '#aaa',
-	  }
+      } 
 	},
     Trending: {
-		screen: SettingsScreen,
+		screen: Trending,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="line-chart" size={30} color={tintColor} />
         )
-      },
-	  tabBarOptions: {
-		showLabel: false,
-		showIcon: true,
-		tintColor: '#900',
-		activeTintColor: '#aaa',
-	  }
+      }
 	},
-	Time: {
-		screen: MainScreen,
+	Profile: {
+		screen: Profile,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="user" size={30} color={tintColor} />
         )
-      },
-	  tabBarOptions: {
-		showLabel: false,
-		showIcon: true,
-		tintColor: '#900',
-		activeTintColor: '#aaa',
-	  }
+      }
 	},
 	Settings: {
 		screen: SettingsScreen,
@@ -61,17 +45,17 @@ const TabNavigator = createBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <Icon name="cog" size={30} color={tintColor} />
         )
-      },
-	  tabBarOptions: {
-		showLabel: false,
-		showIcon: true,
-		tintColor: '#900',
-		activeTintColor: '#aaa',
-	  }
+      }
 	}
   },
   {
     tabBarComponent: props => <TabBar {...props} />,
+	tabBarOptions: {
+		showLabel: false,
+		showIcon: true,
+		tintColor: '#900',
+		activeTintColor: '#a49',
+	  }
   },
 );
 

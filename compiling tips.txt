@@ -1,2 +1,7 @@
 Review for icons
 https://github.com/oblador/react-native-vector-icons
+
+
+
+Stock API
+https://www.alphavantage.co/documentation/

@@ -2,19 +2,22 @@
 import React from 'react';
 import { View, Text, StyleSheet,SafeAreaView, ScrollView } from 'react-native';
 import SearchBox from '../src/SearchBox';
-import StreetList from '../src/Street/StreetList';
+import TrendingList from '../src/Trending/TrendingList';
 
 import { withTheme } from '../src/theme'
+/*
+<Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Trending</Text>
+*/
 
-const Main = (props) => {
+const Trending = (props) => {
   return (
-    <SafeAreaView style={{flex: 1, marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, paddingTop: 10, backgroundColor: props.theme.backgroundColor}}>
+    <SafeAreaView style={{flex: 1, width: '100%', marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, backgroundColor: '#000'}}>
     <ScrollView style={{flex: 1,  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, width: '100%'}}>
     <View style={[style.container, { backgroundColor: 'rgba(255,255,255,0)',  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
 	    <View style={[style.container, {marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
         <SearchBox />
-        <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Street</Text>
-		    <StreetList />
+        
+		<TrendingList />
 	    </View>
     </View>
     </ScrollView>
@@ -25,6 +28,7 @@ const Main = (props) => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
+	width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -33,4 +37,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(Main);
+export default withTheme(Trending);

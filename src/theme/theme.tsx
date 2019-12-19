@@ -10,7 +10,7 @@ const ThemeContext = React.createContext();
 
 
 export const ThemeContextProvider = ({ children }) => {
-	const [themeID, setThemeID] = useState(ThemeDefinitions[1].key);
+	const [themeID, setThemeID] = useState(ThemeDefinitions[0].key);
 
 	
   return (

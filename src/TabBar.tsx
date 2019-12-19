@@ -14,7 +14,7 @@ const TabBar = props => {
     <BottomTabBar
       {...props}
       labelStyle={style.label}
-	  activeTintColor={props.theme.backgroundColor}
+	  activeTintColor={props.theme.color}
     />
   );
 };
