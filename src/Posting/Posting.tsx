@@ -1,12 +1,14 @@
 // TabBar.js
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, } from 'react-native';
+
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ticker from '../Ticker'
 
 import { withTheme } from '../theme';
 
-const PostingList = props => {
+const Posting = props => {
 	
   return (
     <View style={style.container}>	
@@ -64,4 +66,4 @@ const style = StyleSheet.create({
   }
 });
 
-export default withTheme(PostingList);
+export default withTheme(Posting);

@@ -65,6 +65,7 @@ const AppContainer = createAppContainer(TabNavigator);
 
 
 export default function App() {
+  
   return (
    <ThemeContextProvider>
       <AppContainer />

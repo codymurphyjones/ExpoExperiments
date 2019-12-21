@@ -1,34 +1,66 @@
 // Main.js
-import React from 'react';
-import { View, Text, StyleSheet,SafeAreaView, ScrollView } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import SearchBox from '../src/SearchBox';
 import TrendingList from '../src/Trending/TrendingList';
+import ScreenArea from './ScreenArea';
+import config from "../config"
 
+import { firestore, storage } from "../src/firebase"
 import { withTheme } from '../src/theme'
-/*
-<Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Trending</Text>
-*/
 
 const Trending = (props) => {
+
+  let postDB = firestore.collection("posts");
+  const [posts,setPosts] = useState({});
+
+  
+
+  useEffect(() => {
+  let query = postDB.get()
+    .then(snapshot => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }  
+
+        let postCollection = {};
+        snapshot.forEach(doc => {
+          let data = doc.data();
+          postCollection[doc.id] = {
+            id: doc.id,
+            body: data.body,
+            ticker: data.ticker,
+            img: storage.ref(data.img)
+        }
+      });
+
+      setPosts(postCollection);
+    })
+  .catch(err => {
+    console.log('Error getting documents', err);
+  });
+},[]);
+
+  
+
+
   return (
-    <SafeAreaView style={{flex: 1, width: '100%', marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, backgroundColor: '#000'}}>
-    <ScrollView style={{flex: 1,  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, width: '100%'}}>
+    <ScreenArea backgroundColor='#000'>
     <View style={[style.container, { backgroundColor: 'rgba(255,255,255,0)',  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
 	    <View style={[style.container, {marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
-        <SearchBox />
-        
-		<TrendingList />
-	    </View>
+          <SearchBox />
+		      <TrendingList posts={posts} />
+      </View>
     </View>
-    </ScrollView>
-    </SafeAreaView>
+    </ScreenArea>
   );
 };
 
 const style = StyleSheet.create({
   container: {
     flex: 1,
-	width: '100%',
+	  width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -36,5 +68,33 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+/*
+const Trending = (props) => {
+  return (
+    <ScreenArea backgroundColor='#000'>
+    <ScrollView style={{flex: 1,  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, width: '100%', height: "90%"}}>
+      <View style={[style.container, { backgroundColor: 'rgba(255,255,255,0)',  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
+          <SearchBox />
+	      <View style={[style.container, {marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
+		      <TrendingList />
+	      </View>
+      </View>
+    </ScrollView>
+    </ScreenArea>
+  );
+};
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+	  width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    fontWeight: 'bold',
+  },
+});
+*/
 
 export default withTheme(Trending);

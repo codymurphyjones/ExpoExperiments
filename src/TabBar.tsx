@@ -8,7 +8,6 @@ import { withTheme } from './theme';
 const TabBar = props => {
 	
 	var {height, width} = Dimensions.get('window');
-	console.log({height, width});
 	
   return (
     <BottomTabBar

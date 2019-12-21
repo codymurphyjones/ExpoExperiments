@@ -1,4 +1,11 @@
 export default {
 	API_KEY: "",
-	URL: ""
+	URL: "",
+	apiKey: "",
+	authDomain: "",
+	databaseURL: "",
+	storageBucket: "",
+	messageSenderId: "",
+	appId: "",
+	measurementId: ""
 }

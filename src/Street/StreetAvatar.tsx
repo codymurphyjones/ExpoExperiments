@@ -1,10 +1,36 @@
 // TabBar.js
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Ticker from '../Ticker'
 import { withTheme } from '../theme';
+import config from "../../config"
+
+import {storage} from "../firebase"
+
+
 
 const StreetAvatar = props => {
+  const [name, setName] = useState("");
+  const [image,setImage] = useState("./");
+
+  useEffect(() => {
+    let query = props.user.get()
+      .then(snapshot => {
+          if (snapshot.empty) {
+            console.log('No matching documents.');
+            return;
+          }  
+          
+          let data = snapshot.data()
+
+          storage.ref(data.profile).getDownloadURL().then((url: string) => { setImage(url);  });
+          setName(data.firstname + " " + data.lastname);
+      })
+    .catch(err => {
+      console.log('Error getting documents', err);
+    });
+  },[]);
+  
 	
   return (
     <View style={{ flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', paddingTop: 10, justifyContent: 'space-around'}}>
@@ -18,8 +44,8 @@ const StreetAvatar = props => {
                 alignItems: 'center',
                 alignSelf: 'center'
 		}}>
-			<Image style={styles.stretch} source={props.src} ></Image>
-            <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{props.name}</Text>
+			<Image style={styles.stretch} source={image} ></Image>
+            <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
 		<Text style={{color: props.color, width: 80}}>2 mins ago</Text>
 	</View>

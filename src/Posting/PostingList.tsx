@@ -1,20 +1,30 @@
 // TabBar.js
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Posting from './Posting'
+import { firestore, storage } from "../firebase"
 
 import { withTheme } from '../theme';
 
 const PostingList = props => {
+
+const listItems = Object.keys(props.posts).map((id) => {
+    let data = props.posts[id];
+
+    return (
+      <Posting key={id} ticker={data.ticker}>{data.body}</Posting>
+    );
+  }
+  );
+
+  console.log(props.posts);
 	
   return (
     <View style={style.container}>
 		<View style={{borderColor: '#fce1ab', borderWidth: 2, alignSelf: 'stretch'}}></View>
 		<Text style={{marginTop: -15, backgroundColor: props.theme.backgroundColor, padding: 5}}>TOP</Text>
 		<View style={style.container}>
-			<Posting ticker="MSFT">This is my posting about my opinion on this stock, I'm not saying its a fact its just a thought</Posting>
-			<Posting ticker="MSFT">This is my posting about my opinion on this stock, I'm not saying its a fact its just a thought</Posting>
-			<Posting ticker="MSFT">This is my posting about my opinion on this stock, I'm not saying its a fact its just a thought</Posting>
+			{listItems}
 		</View>
 	</View>
   );

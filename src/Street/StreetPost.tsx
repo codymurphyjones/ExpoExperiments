@@ -1,12 +1,17 @@
 // TabBar.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../theme';
 
 const TrendPost = props => {
-    const [count, setCount] = useState(props.count | 0);
+	//const [image,setImage] = useState("./");
+	const [count, setCount] = useState(props.count | 0);
+	
+	/*useEffect(() => {
+	props.src.getDownloadURL().then((url: string) => { setImage(url);  });
+	}, []);*/
     
     function OnUpPress() {
         setCount(count + 1);
@@ -20,7 +25,7 @@ const TrendPost = props => {
     <View style={style.container}>	
 		<View style={[style.container, { borderBottomWidth: 0 }]}>
 			<View style={style.head}>
-                <StreetAvatar name={props.name} src={props.src} ticker={props.ticker} color={props.textColor} />
+                <StreetAvatar user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
 			</View>
 			<View style={style.content}>
 				<Text style={{ color: props.textColor}}>{props.children}</Text>

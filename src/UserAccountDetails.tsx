@@ -9,23 +9,23 @@ const UserAccountDetails = props => {
 	
   return (
     <View style={style.container}>
-		<Text style={{fontWeight: 'bold'}}>Michael Griffin</Text>
-		<Text style={{color: "#a0a0a0"}}>United States</Text>
+		<Text style={{fontWeight: 'bold'}}>{props.name}</Text>
+		<Text style={{color: "#a0a0a0"}}>{props.location}</Text>
 		
-		<Text style={{paddingTop: 20, fontSize: 16}}>Investing since 18, invest don't trade</Text>
+		<Text style={{paddingTop: 20, fontSize: 16}}>{props.bio}</Text>
 		<View style={[style.container, { backgroundColor: props.theme.backgroundColor, flexDirection: 'row' , justifyContent: 'space-between'}]}>
 				<View style={style.vertical}>
-					<Text>36</Text>
+					<Text>{props.following}</Text>
 					<Text>Following</Text>
 				</View>
 				<Text style={{fontSize: 25}}>|</Text>
 				<View style={style.vertical}>
-					<Text>18k</Text>
+					<Text>{props.followers}</Text>
 					<Text>Followers</Text>
 				</View>
 				<Text style={{fontSize: 25}}>|</Text>
 				<View style={style.vertical}>
-					<Text>23</Text>
+					<Text>{props.tickers}</Text>
 					<Text>Tickers</Text>
 				</View>
 		</View>

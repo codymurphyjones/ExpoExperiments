@@ -28,7 +28,6 @@ const TickerTrend = props => {
     .then(res => { 
 		setdifference(res.changePercent);
 		setPrice(res.latestPrice);
-		console.log(res); 
 		})
   }, [stock]);
 

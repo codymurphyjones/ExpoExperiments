@@ -1,15 +1,20 @@
 // TabBar.js
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ticker from '../Ticker'
 import TickerTrend from './TickerTrend'
 import { withTheme } from '../theme';
 
 const TrendPost = props => {
+	const [image,setImage] = useState("./");
+	useEffect(() => {
+	props.src.getDownloadURL().then((url: string) => { setImage(url);  });
+	}, []);
 	
   return (	
-    <ImageBackground source={props.src} style={[style.container, { backgroundColor: 'red' }]}>
+    <ImageBackground source={{uri: image}} style={style.container}>
 		<View style={style.overlay} />	
 		<View style={[style.container, { borderBottomWidth: 0 }]}>
 			<View style={style.head}>
