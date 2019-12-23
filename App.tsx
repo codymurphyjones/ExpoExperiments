@@ -1,17 +1,22 @@
 // App.js
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { StyleSheet, Text, View } from 'react-native';
 import { ThemeContextProvider } from './src/theme'
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-import MainScreen from './screens/Main';
-import SettingsScreen from './screens/Settings';
-import Profile from './screens/Profile';
-import Trending from './screens/Trending';
-import TabBar from './src/TabBar';
+import Icon from 'react-native-vector-icons/Feather';
+
+import MainScreen from './src/screens/Main';
+import SettingsScreen from './src/screens/Settings';
+import Profile from './src/screens/Profile';
+import Trending from './src/screens/Trending';
+import Login from './src/screens/Login';
+import AuthLoading from './src/screens/AuthLoading';
+
+import TabBar from './src/components/TabBar';
 
 console.reportErrorsAsExceptions = false;
 
@@ -29,11 +34,19 @@ const TabNavigator = createBottomTabNavigator(
 		screen: Trending,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="line-chart" size={30} color={tintColor} />
+          <Icon name="trending-up" size={30} color={tintColor} />
         )
       }
 	},
 	Profile: {
+		screen: Profile,
+		navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="user" size={30} color={tintColor} />
+        )
+      }
+  },
+  Test: {
 		screen: Profile,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
@@ -45,7 +58,7 @@ const TabNavigator = createBottomTabNavigator(
 		screen: SettingsScreen,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="cog" size={30} color={tintColor} />
+          <Icon name="settings" size={30} color={tintColor} />
         )
       }
 	}
@@ -60,8 +73,21 @@ const TabNavigator = createBottomTabNavigator(
 	  }
   },
 );
-
-const AppContainer = createAppContainer(TabNavigator);
+/*
+const AppStack = createStackNavigator({ Home: HomeScreen, Other: OtherScreen });
+const AuthStack = createStackNavigator({ SignIn: SignInScreen });*/
+const AppContainer = createAppContainer(
+  createSwitchNavigator(
+    {
+      AuthLoading: AuthLoading,
+      App: TabNavigator,
+      Auth: Login,
+    },
+    {
+      initialRouteName: 'AuthLoading',
+    }
+  )
+);
 
 
 export default function App() {
