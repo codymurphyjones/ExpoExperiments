@@ -46,14 +46,6 @@ const TabNavigator = createBottomTabNavigator(
         )
       }
   },
-  Test: {
-		screen: Profile,
-		navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="user" size={30} color={tintColor} />
-        )
-      }
-	},
 	Settings: {
 		screen: SettingsScreen,
 		navigationOptions: {
