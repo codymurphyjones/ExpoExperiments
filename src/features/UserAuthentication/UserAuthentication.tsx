@@ -31,13 +31,8 @@ const UserAuthentication = props => {
   useEffect(() => {
     auth.onAuthStateChanged(function(user) {
         if (user) {
-          var uid = user.uid;
-          var providerData = user.providerData;
-          console.log("onAuth Login Change")
           props.navigation.navigate("AuthLoading") 
-        } else {
-          console.log("onAuth Logout Change")
-        }
+        } 
     });
   }, [])
   
