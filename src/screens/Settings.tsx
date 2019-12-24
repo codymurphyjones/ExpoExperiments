@@ -8,14 +8,29 @@ import IconTextBox from '../components/IconTextBox';
 
 import { withTheme } from '../theme'
 
-import { firestore } from '../utils'
+import { auth } from '../utils'
 
 
 const Login = (props) => {
 
+  useEffect(() => {
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+          console.log("onAuth Login Change")
+          
+        } else {
+          console.log("onAuth Logout Change")
+          props.navigation.navigate("AuthLoading") 
+        }
+    });
+  }, [])
+
     let myWidth = "100%"
 
-    let SignIn = () => { props.navigation.navigate("Auth") };
+    let SignIn = () => { auth.signOut().then(function() {
+      // Sign-out successful.
+      console.log("Sessions cleared");
+  }); };
 
 
   return (

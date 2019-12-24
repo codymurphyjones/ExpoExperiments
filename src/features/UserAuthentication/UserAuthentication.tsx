@@ -6,66 +6,44 @@ import ScreenArea from '../../components/ScreenArea';
 import Button from '../../components/Button';
 import IconTextBox from '../../components/IconTextBox';
 
+import {emailValidate, passwordValidate} from './validations';
+import HiddenIconTextBox from './HiddenIconTextBox';
+
 import { withTheme } from '../../theme'
 
 import { auth } from '../../utils'
 
 
 const UserAuthentication = props => {
-  let errorDetected = false;
-  const [email,setEmail] = useState("");
   const [error,setError] = useState("");
-  const errorMessage = props.navigation.getParam("message", "");
-  
+  //Toggle SignIn/SignUp
   const [isSignIn,setisSignIn] = useState(true);
-  
+  //Handle
   const [handle,setHandle] = useState("");
+  //passwords
   const [password,setPassword] = useState("");
   const [confirm,setConfirm] = useState("");
-
-  const [isEmail,setIsEmail] = useState(true);
   const [isPass,setIsPass,] = useState(false);
+  //email
+  const [email,setEmail] = useState("");
+  const [isEmail,setIsEmail] = useState(true);
 
-  useEffect(() => {}, [error])
 
-  const emailValidate = (email) => {
-    const validate = /.*@?.*\.[0-z]*/
-
-    return validate.test(String(email).toLowerCase())
-}
-
-  const passwordValidate = (password,confirm) => {
-    const validate = new RegExp(password)
-    if(!isSignIn)
-    {
-        if(password.length < 6)
-            return false;
-
-        return validate.test(String(confirm).toLowerCase())
-    }
-    else
-        return true;
-  }
-
-  async function SignIn() { 
-        console.log(error);
-        console.log("Testing this")
-        if(error == "" && !errorDetected)
+  useEffect(() => {
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+          var uid = user.uid;
+          var providerData = user.providerData;
+          console.log("onAuth Login Change")
           props.navigation.navigate("AuthLoading") 
-    };
-
-let SwapSignUp = () => { setisSignIn(!isSignIn); setIsEmail(emailValidate(email)) };
+        } else {
+          console.log("onAuth Logout Change")
+        }
+    });
+  }, [])
 
 let isValidated = () => {
-
-  if(isSignIn)
-    return true;
-
-  if(!isEmail || !isPass) {
-      return false;
-  }
-
-  return true;
+  return isSignIn || (isEmail && isPass);
 }
   
 async function createUser() {
@@ -75,7 +53,6 @@ async function createUser() {
     var errorCode = myerror.code;
     var errorMessage = myerror.message;
     setError(errorMessage);
-    errorDetected = errorMessage ? true : false;
   });
 }
 
@@ -86,45 +63,19 @@ async function loginUser() {
     var errorCode = error.code;
     var errorMessage = error.message;
     setError(errorMessage);
-    errorDetected = errorMessage ? true : false;
   });
 }
 
 async function submitButton() {
-  setError("");
-  auth.signOut().then(function() {
-    // Sign-out successful.
-    console.log("Sessions cleared");
-  });
-
-  if(isValidated()) {
-    if(!isSignIn) {
-      await createUser();
-      await SignIn()
+    if(isValidated()) {
+      if(!isSignIn) {
+        await createUser();
+      }
+      else {
+        await loginUser();
+      }
     }
-    else {
-      await loginUser();
-      await SignIn()
-    }
-
-    
-  }
 }
-
- let handleBox = () => { 
-  if(!isSignIn)
-        return (<IconTextBox borderColor={(handle.length < 3 && !isSignIn) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }}width="100%" icon="at-sign" placeholder="Handle" />)
-
-  return (<View></View>)
-};
-
-let confirmPassword = () => { 
-  if(!isSignIn)
-        return (<IconTextBox borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(password,text)) }}width="100%" icon="shield" placeholder="Confirm password" password={true}  />)
-
-  return (<View></View>)
-};
-
 	
   return (	
     <View style={style.container}>
@@ -134,18 +85,18 @@ let confirmPassword = () => {
               <Text style={[style.text, { marginTop: -10,color: '#ffaa22', fontSize: 32, fontWeight: 'bold' }]}>{isSignIn ? "Sign in" : "Sign up"}</Text>
           </View>
           <View style={{marginBottom: 50, width:"80%", flex: 1}}> 
-              {handleBox()}
+              <HiddenIconTextBox show={!isSignIn} borderColor={(handle.length < 3 && !isSignIn) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }} icon="at-sign" placeholder="Handle" />
               <IconTextBox borderColor={(!isEmail && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)) }} width="100%" icon="user" placeholder="Email address"  />
               <IconTextBox borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
-              {confirmPassword()}
+              <HiddenIconTextBox show={!isSignIn} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(password,text,isSignIn)) }} icon="shield" placeholder="Confirm password" password={true}  />
               <View style={{flex: 1,alignItems: 'center',
     justifyContent: 'center',}}> 
-                  <Text style={[style.text, { margin: 0,color: 'maroon', fontSize: 12, marginTop: 25 }]}>{errorMessage || error}</Text>
+                  <Text style={[style.text, { margin: 0,color: 'maroon', fontSize: 12, marginTop: 25 }]}>{error}</Text>
                </View>
           </View>
           <View style={{alignItems: "center", width: "80%"}}>  
               <Button onPress={submitButton} width="100%" color={ isValidated() ? "#ffaa22" : "red"}>Submit</Button>
-              <Button onPress={SwapSignUp} maxWidth={120} width="100%" color="#ffaa22" textColor="#000">{isSignIn ? "Sign Up" : "Sign In"}</Button>
+              <Button onPress={() => { setisSignIn(!isSignIn); setIsEmail(emailValidate(email)) }} maxWidth={120} width="100%" color="#ffaa22" textColor="#000">{isSignIn ? "Sign Up" : "Sign In"}</Button>
           </View>
          
       </View>

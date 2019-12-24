@@ -21,33 +21,23 @@ const setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
 
 
 const Login = (props) => {
-  console.log("Auth Loading");
-  const [userData, setUserData] = useState(null);
+    console.log("Auth Loading");
 
-  async function getUser() {
-    console.log("Getting user");
-    let userAcc;
-    try {
-      userAcc = await auth.currentUser;
-    }
-    catch {}
-
-    return userAcc;
-  }
-
-  function navigateToApp(val) {
-    console.log(val);
-    setUserData(userData);
-    if(val == null) {
-        props.navigation.navigate("Auth", { message: "Unable to login" }) 
-    }
-    else {
-    props.navigation.navigate("App") 
-  }
-
-  }
-
-  var user = getUser().then(navigateToApp);
+    useEffect(() => {
+      auth.onAuthStateChanged(function(user) {
+          if (user) {
+              var uid = user.uid;
+              var providerData = user.providerData;
+              console.log("onAuth Login Change")
+              props.navigation.navigate("App") 
+          } else {
+              console.log("onAuth Logout Change")
+              console.log("Logged out on AuthLoading")
+              props.navigation.navigate("Auth") 
+          }
+      });
+  }, [])
+  
   
   return (
     <ScreenArea backgroundColor={props.theme.backgroundColor}>
