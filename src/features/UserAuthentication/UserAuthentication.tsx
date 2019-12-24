@@ -1,8 +1,7 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-import ScreenArea from '../../components/ScreenArea';
 import Button from '../../components/Button';
 import IconTextBox from '../../components/IconTextBox';
 
@@ -41,33 +40,23 @@ const UserAuthentication = props => {
         }
     });
   }, [])
-
-let isValidated = () => {
-  return isSignIn || (isEmail && isPass);
-}
   
-async function createUser() {
-  await auth.createUserWithEmailAndPassword(email, password).catch(function(myerror) {
-    console.log("Created user");
-    var user = auth.currentUser;
-    var errorCode = myerror.code;
-    var errorMessage = myerror.message;
-    setError(errorMessage);
-  });
-}
+  async function createUser() {
+    await auth.createUserWithEmailAndPassword(email, password).catch(function(myerror) {
+      var errorMessage = myerror.message;
+      setError(errorMessage);
+    });
+  }
 
-async function loginUser() {
-  await auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-    console.log("Login success");
-    var user = auth.currentUser;
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    setError(errorMessage);
-  });
-}
+  async function loginUser() {
+    await auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+      var errorMessage = error.message;
+      setError(errorMessage);
+    });
+  }
 
-async function submitButton() {
-    if(isValidated()) {
+  async function submitButton() {
+    if(isSignIn || (isEmail && isPass)) {
       if(!isSignIn) {
         await createUser();
       }
@@ -75,7 +64,7 @@ async function submitButton() {
         await loginUser();
       }
     }
-}
+  }
 	
   return (	
     <View style={style.container}>
@@ -95,7 +84,7 @@ async function submitButton() {
                </View>
           </View>
           <View style={{alignItems: "center", width: "80%"}}>  
-              <Button onPress={submitButton} width="100%" color={ isValidated() ? "#ffaa22" : "red"}>Submit</Button>
+              <Button onPress={submitButton} width="100%" color={ (isSignIn || (isEmail && isPass)) ? "#ffaa22" : "red"}>Submit</Button>
               <Button onPress={() => { setisSignIn(!isSignIn); setIsEmail(emailValidate(email)) }} maxWidth={120} width="100%" color="#ffaa22" textColor="#000">{isSignIn ? "Sign Up" : "Sign In"}</Button>
           </View>
          
