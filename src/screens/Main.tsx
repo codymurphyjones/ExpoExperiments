@@ -9,16 +9,17 @@ import { withTheme } from '../theme'
 
 import { firestore } from '../utils'
 
-
 const Main = (props) => {
   let postDB = firestore.collection("posts");
-  const [posts,setPosts] = useState({});
-
-  useEffect(() => {
+  let myPost = {}
+  const [posts,setPosts] = useState(props.navigation.getParam('postings',{}));
+  
+  
+  /*useEffect(() => {
   let query = postDB.get()
     .then(snapshot => {
         if (snapshot.empty) {
-          console.log('No matching documents.');
+          
           return;
         }  
 
@@ -35,9 +36,9 @@ const Main = (props) => {
       setPosts(postCollection);
     })
   .catch(err => {
-    console.log('Error getting documents', err);
+    
   });
-},[]);
+},[]);*/
 
 
 

@@ -26,7 +26,7 @@ const IconTextBox = props => {
    			}}>
 				<Icon name={props.icon || "search"} style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
 				<TextInput onChangeText={props.onChangeText}
-						 placeholder={props.placeholder || "Enter search"} secureTextEntry={props.password || false} style={props.textStyle || { fontSize:12, width: "80%" }} />
+						 placeholder={props.placeholder || "Enter search"} secureTextEntry={props.password || false} style={{ fontSize:12, width: "80%", height: 32 }} />
 			</View>
 		</View>
 	</View>

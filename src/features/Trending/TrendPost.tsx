@@ -9,6 +9,8 @@ import { withTheme } from '../../theme';
 
 const TrendPost = props => {
 	const [image,setImage] = useState("./");
+	const [visisble,setVisible] = useState(true);
+
 	useEffect(() => {
 	props.src.getDownloadURL().then((url: string) => { setImage(url);  });
 	}, []);

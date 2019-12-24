@@ -8,32 +8,64 @@ import IconTextBox from '../components/IconTextBox';
 
 import { withTheme } from '../theme'
 
-import { auth } from '../utils'
+import { auth, firestore } from '../utils'
 
-const setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
-  setTimeout(
-			() => {
-					cb();
-					resolve();
-				}, 
-			timeout);
-	});
+function sleep(miliseconds) {
+  var currentTime = new Date().getTime();
 
+  while (currentTime + miliseconds >= new Date().getTime()) {
+  }
+}
 
 const Login = (props) => {
-    console.log("Auth Loading");
+    
+
+  async function getPostDB() {
+    let postDB = firestore.collection("posts");
+    let postCollection = {};
+    let query = await postDB.get()
+      .then(snapshot => {
+          if (snapshot.empty) {
+            
+            return;
+          }  
+          
+          
+          snapshot.forEach(doc => {
+            let data = doc.data();
+            postCollection[doc.id] = {
+              id: doc.id,
+              body: data.body,
+              ticker: data.ticker,
+              user: data.User
+          }
+        });
+    })
+  .catch(err => {
+    
+  });
+
+
+  return postCollection;
+}
+
+  async function getData() {
+    let postings = await getPostDB();
+    
+    props.navigation.navigate("Home", { postings}) 
+    
+  }
 
     useEffect(() => {
       auth.onAuthStateChanged(function(user) {
           if (user) {
               var uid = user.uid;
               var providerData = user.providerData;
-              console.log("onAuth Login Change")
-              props.navigation.navigate("App") 
+              getData();
           } else {
-              console.log("onAuth Logout Change")
-              console.log("Logged out on AuthLoading")
+              
               props.navigation.navigate("Auth") 
+              
           }
       });
   }, [])

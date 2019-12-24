@@ -5,6 +5,7 @@ import Ticker from '../../components/Ticker'
 import { withTheme } from '../../theme';
 
 
+
 import { storage } from '../../utils'
 
 
@@ -17,7 +18,7 @@ const StreetAvatar = props => {
     let query = props.user.get()
       .then(snapshot => {
           if (snapshot.empty) {
-            console.log('No matching documents.');
+            
             return;
           }  
           
@@ -27,13 +28,13 @@ const StreetAvatar = props => {
           setName(data.firstname + " " + data.lastname);
       })
     .catch(err => {
-      console.log('Error getting documents', err);
+      
     });
   },[]);
   
 	
   return (
-    <View style={{ flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', paddingTop: 10, justifyContent: 'space-around'}}>
+    <View style={{ flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', paddingTop: 10, justifyContent: 'space-around' }}>
 		<Ticker color={props.color}>{props.ticker}</Ticker>
 		<View
 			style={{
@@ -44,11 +45,14 @@ const StreetAvatar = props => {
                 alignItems: 'center',
                 alignSelf: 'center'
 		}}>
-			<Image style={styles.stretch} source={{uri:image}} ></Image>
-            <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
+        <Image onLoadStart={props.OnLoadStart}
+            onLoadEnd={props.onLoadEnd}
+            style={styles.stretch} source={{uri:image}} ></Image>
+        <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
 		<Text style={{color: props.color, width: 80}}>2 mins ago</Text>
 	</View>
+ 
   );
 };
 

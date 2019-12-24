@@ -32,7 +32,7 @@ const MainScreen = (props) => {
   let query = userDB.get()
     .then(doc => {
         if (doc.empty) {
-          console.log('No matching documents.');
+          
           return;
         }  
         let data = doc.data();
@@ -42,10 +42,10 @@ const MainScreen = (props) => {
         setFollowing(data.following);
         setFollower(data.followers);
         setTickers(data.tickers);
-        console.log(data);
+        
     })
   .catch(err => {
-    console.log('Error getting documents', err);
+   
   });
 },[]);
   	
@@ -56,7 +56,7 @@ const MainScreen = (props) => {
 		let query = postDB.where('User','==',userDB).get()
 		  .then(snapshot => {
 			  if (snapshot.empty) {
-				console.log('No matching documents.');
+				
 				return;
 			  }  
 	  
@@ -69,11 +69,11 @@ const MainScreen = (props) => {
 				  ticker: data.ticker,
 			  }
 			});
-			console.log(postCollection);
+			
 			setPosts(postCollection);
 		  })
 		.catch(err => {
-		  console.log('Error getting documents', err);
+		  
 		});
 	  },[]);
 
@@ -86,8 +86,8 @@ const MainScreen = (props) => {
     <View style={[style.container, { backgroundColor: props.theme.backgroundColor || "#fff", paddingTop: 20 }]}>
 	    <View style={style.container}>
         <SearchBox />
-        <ProfileAvatar  />
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Profile</Text>
+        <ProfileAvatar  />
 		    
 		    <UserAccountDetails bio={bio} location={location} name={name} following={following} followers={follower} tickers={tickers} />
        

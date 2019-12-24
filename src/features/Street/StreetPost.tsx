@@ -4,9 +4,11 @@ import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../../theme';
+import HideComponent from "../../components/HideComponent"
 
 const TrendPost = props => {
-	//const [image,setImage] = useState("./");
+	const [visible,setVisible] = useState(false);
+	
 	const [count, setCount] = useState(props.count | 0);
 	const [vote, setVote] = useState(props.count | 0);
 	
@@ -26,13 +28,16 @@ const TrendPost = props => {
 			setCount((count - vote) - 1);
 			setVote(-1);
 		}
-       }
+	   }
+	   
+	   const loadStart= (e) => {setVisible(false); console.log("Start") }
+	   const loadEnd=  (e) => {setVisible(true); console.log("End") }
        
   return (	
-    <View style={style.container}>	
-		<View style={[style.container, { borderBottomWidth: 0 }]}>
+    <View style={[style.container, {hidden: (visible ? false: true)}]}>	
+		<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
 			<View style={style.head}>
-                <StreetAvatar user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
+                <StreetAvatar OnLoadStart={loadStart} onLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
 			</View>
 			<View style={style.content}>
 				<Text style={{ color: props.textColor}}>{props.children}</Text>

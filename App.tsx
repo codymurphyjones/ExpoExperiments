@@ -20,13 +20,15 @@ import TabBar from './src/components/TabBar';
 
 console.reportErrorsAsExceptions = false;
 
+const navIconSize = 24;
+
 const TabNavigator = createBottomTabNavigator(
   {
     Home: {
 		screen: MainScreen,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="home" size={30} color={tintColor} />
+          <Icon name="home" size={navIconSize} color={tintColor} />
         )
       } 
 	},
@@ -34,7 +36,7 @@ const TabNavigator = createBottomTabNavigator(
 		screen: Trending,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="trending-up" size={30} color={tintColor} />
+          <Icon name="trending-up" size={navIconSize} color={tintColor} />
         )
       }
 	},
@@ -42,28 +44,31 @@ const TabNavigator = createBottomTabNavigator(
 		screen: Profile,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="user" size={30} color={tintColor} />
+          <Icon name="user" size={navIconSize} color={tintColor} />
         )
       }
   },
-	Settings: {
+  Settings: {
 		screen: SettingsScreen,
 		navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="settings" size={30} color={tintColor} />
+          <Icon name="settings" size={navIconSize} color={tintColor} />
         )
       }
-	}
+	},
   },
   {
-    tabBarComponent: props => <TabBar {...props} />,
+    tabBarComponent: props => <TabBar lazy={false} {...props} />,
 	tabBarOptions: {
 		showLabel: false,
 		showIcon: true,
 		tintColor: '#900',
 		activeTintColor: '#a49',
-	  }
+    },
+    lazy: false
   },
+  
+
 );
 
 const AppContainer = createAppContainer(
@@ -74,7 +79,8 @@ const AppContainer = createAppContainer(
       Auth: Login,
     },
     {
-      initialRouteName: 'Auth',
+      initialRouteName: 'AuthLoading',
+      lazy: false
     }
   )
 );

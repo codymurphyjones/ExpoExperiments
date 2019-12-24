@@ -16,8 +16,6 @@ const listItems = Object.keys(props.posts).map((id) => {
     );
   }
   );
-
-  console.log(props.posts);
 	
   return (
     <View style={style.container}>

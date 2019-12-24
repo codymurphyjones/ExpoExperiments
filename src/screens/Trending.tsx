@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import SearchBox from '../components/SearchBox';
 import TrendingList from '../features/Trending/TrendingList';
 import ScreenArea from '../components/ScreenArea';
-
+import {AsyncStorage} from 'react-native';
 import { firestore, storage } from '../utils'
 import { withTheme } from '../theme'
 
@@ -13,13 +13,11 @@ const Trending = (props) => {
   let postDB = firestore.collection("posts");
   const [posts,setPosts] = useState({});
 
-  
-
   useEffect(() => {
   let query = postDB.get()
     .then(snapshot => {
         if (snapshot.empty) {
-          console.log('No matching documents.');
+          
           return;
         }  
 
@@ -37,7 +35,7 @@ const Trending = (props) => {
       setPosts(postCollection);
     })
   .catch(err => {
-    console.log('Error getting documents', err);
+    
   });
 },[]);
 

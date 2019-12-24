@@ -16,10 +16,8 @@ const Login = (props) => {
   useEffect(() => {
     auth.onAuthStateChanged(function(user) {
         if (user) {
-          console.log("onAuth Login Change")
           
         } else {
-          console.log("onAuth Logout Change")
           props.navigation.navigate("AuthLoading") 
         }
     });
@@ -28,8 +26,6 @@ const Login = (props) => {
     let myWidth = "100%"
 
     let SignIn = () => { auth.signOut().then(function() {
-      // Sign-out successful.
-      console.log("Sessions cleared");
   }); };
 
 

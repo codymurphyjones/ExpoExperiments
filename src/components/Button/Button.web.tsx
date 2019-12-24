@@ -31,7 +31,7 @@ const Button = props => {
   }
 
     let onPressDefault = () => {
-      console.log("Button was pressed");
+     
     }
 
     let content = () => {
