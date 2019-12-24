@@ -13,7 +13,7 @@ const UserAccountDetails = props => {
 		<Text style={{color: "#a0a0a0"}}>{props.location}</Text>
 		
 		<Text style={{paddingTop: 20, fontSize: 16}}>{props.bio}</Text>
-		<View style={[style.container, { backgroundColor: props.theme.backgroundColor, flexDirection: 'row' , justifyContent: 'space-between'}]}>
+		<View style={[style.container, { backgroundColor: props.theme.backgroundColor || "#fff", flexDirection: 'row' , justifyContent: 'space-between'}]}>
 				<View style={style.vertical}>
 					<Text>{props.following}</Text>
 					<Text>Following</Text>

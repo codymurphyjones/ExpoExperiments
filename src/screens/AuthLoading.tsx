@@ -1,6 +1,6 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
 import ScreenArea from '../components/ScreenArea';
 import Button from '../components/Button';
@@ -8,30 +8,52 @@ import IconTextBox from '../components/IconTextBox';
 
 import { withTheme } from '../theme'
 
-import { firestore } from '../utils'
+import { auth } from '../utils'
+
+const setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
+  setTimeout(
+			() => {
+					cb();
+					resolve();
+				}, 
+			timeout);
+	});
 
 
 const Login = (props) => {
+  console.log("Auth Loading");
+  const [userData, setUserData] = useState(null);
 
-  let SignIn = () => { props.navigation.navigate("Auth") };
+  async function getUser() {
+    console.log("Getting user");
+    let userAcc;
+    try {
+      userAcc = await auth.currentUser;
+    }
+    catch {}
 
-  SignIn();
+    return userAcc;
+  }
 
+  function navigateToApp(val) {
+    console.log(val);
+    setUserData(userData);
+    if(val == null) {
+        props.navigation.navigate("Auth", { message: "Unable to login" }) 
+    }
+    else {
+    props.navigation.navigate("App") 
+  }
+
+  }
+
+  var user = getUser().then(navigateToApp);
+  
   return (
     <ScreenArea backgroundColor={props.theme.backgroundColor}>
 	    <View style={style.container}>
 		    <View style={style.container2}> 
-          <View style={{width: 180, marginBottom: 60}}>  
-              <Text style={[style.text, { margin: 0,color: props.theme.color, fontSize: 36, marginTop: 25 }]}>Welcome</Text>
-              <Text style={[style.text, { marginTop: -10,color: '#ffaa22', fontSize: 32, fontWeight: 'bold' }]}>Sign in</Text>
-          </View>
-          <IconTextBox width="80%" icon="user" placeholder="Username"  />
-          <IconTextBox width="80%" icon="lock" placeholder="Password" password={true}  />
-          <View style={{alignItems: "center", width: "80%"}}>  
-              <Button onPress={SignIn} width="100%" color="#ffaa22">Submit</Button>
-              <Button onPress={SignIn} maxWidth={120} width="100%" color="#ffaa22" textColor="#000">Sign Up</Button>
-          </View>
-         
+            <ActivityIndicator size="large" color="#ffaa22" />
       </View>
 	    </View>
     
@@ -47,8 +69,8 @@ const style = StyleSheet.create({
     height: "100%"
   },
   container2: {
-    height: 400,
-    width: 300,
+    height: 50,
+    width: 50,
     alignItems: 'center',
   },
   text: {

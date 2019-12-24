@@ -29,7 +29,7 @@ const Login = (props) => {
               <Button icon="user" width={myWidth} iconColor="#ffaa22" bold={true}>Account</Button>
               <Button icon="award" width={myWidth} iconColor="#ffaa22" bold={true}>Feedback</Button>
           </View>
-          <View style={{ width: "65%", marginTop: 100}}>  
+          <View style={{ width: "65%", marginTop: 50}}>  
               <Button icon="info" width={myWidth} iconColor="#ffaa22" bold={true}>About</Button>
               <Button onPress={SignIn} icon="log-out" width={myWidth} iconColor="#ffaa22" bold={true}>Logout</Button>
           </View>

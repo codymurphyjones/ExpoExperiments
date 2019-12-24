@@ -83,7 +83,7 @@ const MainScreen = (props) => {
 
   return (
     <ScreenArea backgroundColor={props.theme.backgroundColor}>
-    <View style={[style.container, { backgroundColor: props.theme.backgroundColor, paddingTop: 20 }]}>
+    <View style={[style.container, { backgroundColor: props.theme.backgroundColor || "#fff", paddingTop: 20 }]}>
 	    <View style={style.container}>
         <SearchBox />
         <ProfileAvatar  />

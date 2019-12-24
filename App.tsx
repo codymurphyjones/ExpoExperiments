@@ -65,9 +65,7 @@ const TabNavigator = createBottomTabNavigator(
 	  }
   },
 );
-/*
-const AppStack = createStackNavigator({ Home: HomeScreen, Other: OtherScreen });
-const AuthStack = createStackNavigator({ SignIn: SignInScreen });*/
+
 const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
@@ -76,7 +74,7 @@ const AppContainer = createAppContainer(
       Auth: Login,
     },
     {
-      initialRouteName: 'AuthLoading',
+      initialRouteName: 'Auth',
     }
   )
 );

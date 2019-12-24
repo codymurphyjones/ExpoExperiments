@@ -17,7 +17,7 @@ const SettingsScreen = (props) => {
         style={[
           style.itemContainer,
           {
-            backgroundColor: item.backgroundColor,
+            backgroundColor: item.backgroundColor || "#fff",
           },
         ]}
       >

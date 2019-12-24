@@ -8,17 +8,24 @@ import { withTheme } from '../../theme';
 const TrendPost = props => {
 	//const [image,setImage] = useState("./");
 	const [count, setCount] = useState(props.count | 0);
+	const [vote, setVote] = useState(props.count | 0);
 	
 	/*useEffect(() => {
 	props.src.getDownloadURL().then((url: string) => { setImage(url);  });
 	}, []);*/
     
     function OnUpPress() {
-        setCount(count + 1);
+			if(vote <= 0) {
+				setCount((count - vote) + 1);
+				setVote(1);
+			}
        }
 
     function OnDownPress() {
-        setCount(count - 1);
+		if(vote >= 0) {
+			setCount((count - vote) - 1);
+			setVote(-1);
+		}
        }
        
   return (	
@@ -42,11 +49,11 @@ const TrendPost = props => {
             </View>
 			<View style={style.icon}>
             <TouchableHighlight onPress={OnUpPress}>
-                <Icon name="chevron-up" style={{ fontSize: 15, padding: 5, paddingRight:10 }}  />
+                <Icon name="chevron-up" style={{ fontSize: 15, padding: 5, paddingRight:10, color: (vote > 0) ? "green" : "#000" }}  />
             </TouchableHighlight>
-                <Text>{count}</Text>
+                <Text style={{color: (vote > 0) ? "green" : ((vote < 0) ? "red" : "#000") }}>{count}</Text>
             <TouchableHighlight onPress={OnDownPress}>
-                <Icon name="chevron-down" style={{ fontSize: 15, padding: 5, paddingRight:10}}  />
+                <Icon name="chevron-down" style={{ fontSize: 15, padding: 5, paddingRight:10, color: (vote < 0) ? "red" : "#000" }}  />
             </TouchableHighlight>
             </View>
 		</View>

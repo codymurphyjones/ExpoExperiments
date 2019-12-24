@@ -68,32 +68,4 @@ const style = StyleSheet.create({
   },
 });
 
-/*
-const Trending = (props) => {
-  return (
-    <ScreenArea backgroundColor='#000'>
-    <ScrollView style={{flex: 1,  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0, width: '100%', height: "90%"}}>
-      <View style={[style.container, { backgroundColor: 'rgba(255,255,255,0)',  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
-          <SearchBox />
-	      <View style={[style.container, {marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
-		      <TrendingList />
-	      </View>
-      </View>
-    </ScrollView>
-    </ScreenArea>
-  );
-};
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-	  width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontWeight: 'bold',
-  },
-});
-*/
-
 export default withTheme(Trending);

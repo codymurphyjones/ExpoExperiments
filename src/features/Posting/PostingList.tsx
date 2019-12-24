@@ -22,7 +22,8 @@ const listItems = Object.keys(props.posts).map((id) => {
   return (
     <View style={style.container}>
 		<View style={{borderColor: '#fce1ab', borderWidth: 2, alignSelf: 'stretch'}}></View>
-		<Text style={{marginTop: -15, backgroundColor: props.theme.backgroundColor, padding: 5}}>TOP</Text>
+    <View style={{marginTop: -17, backgroundColor: props.theme.backgroundColor || "#fff", padding: 5}}>
+		<Text>TOP</Text></View>
 		<View style={style.container}>
 			{listItems}
 		</View>

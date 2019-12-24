@@ -9,16 +9,15 @@ import { UserAuthentication } from '../features/UserAuthentication';
 
 import { withTheme } from '../theme'
 
-
+//
 
 const Login = (props) => {
 
-  let SignIn = () => { props.navigation.navigate("App") };
+  let SignIn = () => { props.navigation.navigate("AuthLoading") };
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor}>
-	    <UserAuthentication navigation={props.navigation} />
-    
+    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
+      <UserAuthentication navigation={props.navigation} />
     </ScreenArea>
   );
 };
