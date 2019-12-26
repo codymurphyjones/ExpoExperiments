@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { BottomTabBar } from 'react-navigation-tabs';
 
-import { withTheme } from '../theme';
+import { withTheme } from '../with/theme';
 
 const TabBar = props => {
 	

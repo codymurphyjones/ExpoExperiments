@@ -6,7 +6,7 @@ import ScreenArea from '../../components/ScreenArea';
 import Button from '../../components/Button';
 import IconTextBox from '../../components/IconTextBox';
 
-import { withTheme } from '../../theme'
+import { withTheme } from '../../with/theme'
 
 import { auth } from '../../utils'
 

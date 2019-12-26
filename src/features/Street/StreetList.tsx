@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import StreetPost from './StreetPost'
 
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 
 const TrendingList = props => {
   const listItems = Object.keys(props.posts).map((id) => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import './style.css';
 
-import { withTheme } from '../../theme'
+import { withTheme } from '../../with/theme'
 
 const ScreenArea = (props) => {
   return (

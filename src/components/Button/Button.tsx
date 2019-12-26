@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 
 const Button = props => {
 

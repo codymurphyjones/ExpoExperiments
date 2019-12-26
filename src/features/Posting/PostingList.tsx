@@ -4,7 +4,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Posting from './Posting'
 import { firestore, storage } from "../firebase"
 
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 
 const PostingList = props => {
 

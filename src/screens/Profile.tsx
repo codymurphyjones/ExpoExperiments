@@ -7,7 +7,7 @@ import UserAccountDetails from '../components/UserAccountDetails';
 import PostingList from '../features/Posting/PostingList';
 import ScreenArea from '../components/ScreenArea';
 
-import { withTheme } from '../theme'
+import { withTheme } from '../with/theme'
 
 import { firestore, storage } from '../utils'
 

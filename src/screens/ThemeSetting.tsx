@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { withTheme } from '../theme'
+import { withTheme } from '../with/theme'
 
 const SettingsScreen = (props) => {
   const renderItem = ({ item }) => (

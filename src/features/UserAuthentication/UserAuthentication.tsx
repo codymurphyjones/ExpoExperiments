@@ -8,7 +8,7 @@ import IconTextBox from '../../components/IconTextBox';
 import {emailValidate, passwordValidate} from './validations';
 import HiddenIconTextBox from './HiddenIconTextBox';
 
-import { withTheme } from '../../theme'
+import { withTheme } from '../../with/theme'
 
 import { auth } from '../../utils'
 

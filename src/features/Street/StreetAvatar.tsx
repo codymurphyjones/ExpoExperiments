@@ -2,7 +2,7 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Ticker from '../../components/Ticker'
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 
 
 

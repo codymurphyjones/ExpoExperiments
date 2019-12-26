@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, StyleSheet, Image, Text, TouchableHighlight } from 'react-native';
-import { withTheme } from '../theme';
+import { withTheme } from '../with/theme';
 import Button from './Button';
 import HideComponent from "./HideComponent"
 

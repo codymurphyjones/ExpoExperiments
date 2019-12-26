@@ -5,7 +5,7 @@ import SearchBox from '../components/SearchBox';
 import StreetList from '../features/Street/StreetList';
 import ScreenArea from '../components/ScreenArea';
 
-import { withTheme } from '../theme'
+import { withTheme } from '../with/theme'
 
 import { firestore } from '../utils'
 

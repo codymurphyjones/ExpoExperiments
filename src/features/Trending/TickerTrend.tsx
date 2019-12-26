@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text } from 'react-native';
 
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 
 import { iex } from '../../utils'
 

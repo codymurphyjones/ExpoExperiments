@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { StyleSheet, Text, View } from 'react-native';
-import { ThemeContextProvider } from './src/theme'
+import { ThemeContextProvider } from './src/with/theme'
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -17,6 +17,7 @@ import Login from './src/screens/Login';
 import AuthLoading from './src/screens/AuthLoading';
 
 import TabBar from './src/components/TabBar';
+import {UserContextProvider} from './src/with/user'
 
 console.reportErrorsAsExceptions = false;
 
@@ -89,9 +90,11 @@ const AppContainer = createAppContainer(
 export default function App() {
   
   return (
+    <UserContextProvider>
    <ThemeContextProvider>
       <AppContainer />
    </ThemeContextProvider>
+   </UserContextProvider>
   );
 }
 

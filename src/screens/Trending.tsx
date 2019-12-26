@@ -6,7 +6,7 @@ import TrendingList from '../features/Trending/TrendingList';
 import ScreenArea from '../components/ScreenArea';
 import {AsyncStorage} from 'react-native';
 import { firestore, storage } from '../utils'
-import { withTheme } from '../theme'
+import { withTheme } from '../with/theme'
 
 const Trending = (props) => {
 

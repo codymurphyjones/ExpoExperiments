@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 import HideComponent from "../../components/HideComponent"
 
 const TrendPost = props => {

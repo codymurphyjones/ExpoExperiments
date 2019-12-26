@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ticker from '../../components/Ticker'
 import TickerTrend from './TickerTrend'
-import { withTheme } from '../../theme';
+import { withTheme } from '../../with/theme';
 
 const TrendPost = props => {
 	const [image,setImage] = useState("./");

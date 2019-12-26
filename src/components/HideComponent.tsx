@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import { View } from 'react-native';
 
-import { withTheme } from '../theme'
+import { withTheme } from '../with/theme'
 
 
 
