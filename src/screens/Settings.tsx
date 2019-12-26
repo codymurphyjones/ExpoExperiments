@@ -34,7 +34,7 @@ const Login = (props) => {
   return (
     <ScreenArea backgroundColor={props.theme.backgroundColor}>
 	    <View style={style.container}>
-      <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginBottom: 20}]}>Settings</Text>
+      
           <Settings />
          
       </View>
