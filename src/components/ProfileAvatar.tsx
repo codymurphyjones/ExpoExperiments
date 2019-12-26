@@ -8,9 +8,14 @@ import HideComponent from "./HideComponent"
 
 
 
+import { storage } from '../utils'
+
+
+
 const ProfileAvatar = props => {
 	const [visisble,setVisible] = useState(true);
-	
+
+	console.log(props.uri);
   return (
 	  <HideComponent show={visisble} >
     <View style={{ flex: 1,flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 10, width: '100%', }}>
@@ -20,7 +25,7 @@ const ProfileAvatar = props => {
 				justifyContent: 'center',
 				borderRadius: 35
 		}}>
-			<Image onLoadStart={(e) => setVisible(false)} onLoadStart={(e) => setVisible(true)} style={styles.stretch} source={require('../../assets/avatar.png')}  ></Image>
+			<Image onLoadStart={(e) => setVisible(false)} onLoadStart={(e) => setVisible(true)} style={styles.stretch} source={{uri: props.uri}}  ></Image>
 		</View>
 
 		<Button padding={2}  color="#f59d0c">Followed</Button>

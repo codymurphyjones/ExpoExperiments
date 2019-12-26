@@ -23,6 +23,7 @@ const MainScreen = (props) => {
   const [following,setFollowing] = useState("");
   const [follower,setFollower] = useState("");
   const [tickers,setTickers] = useState("");
+  const [image,setImage] = useState("./");
 
   //postings
   const [posts,setPosts] = useState({});
@@ -57,6 +58,7 @@ useEffect(() => {
       setFollowing(props.User.following);
       setFollower(props.User.followers);
       setTickers(props.User.tickers);
+      setImage(props.User.profileUrl)
 
       console.log(props.User.uid)
       let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
@@ -124,7 +126,7 @@ useEffect(() => {
 	    <View style={style.container}>
         <SearchBox />
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Profile</Text>
-        <ProfileAvatar  />
+        <ProfileAvatar uri={image != "/." ? image: "../../assets/avatar.png"}  />
 		    
 		    <UserAccountDetails bio={bio} location={location} name={name} following={following} followers={follower} tickers={tickers} />
        
