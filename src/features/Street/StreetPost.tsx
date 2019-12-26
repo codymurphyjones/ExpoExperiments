@@ -30,11 +30,11 @@ const TrendPost = props => {
 		}
 	   }
 	   
-	   const loadStart= (e) => {setVisible(false); console.log("Start") }
-	   const loadEnd=  (e) => {setVisible(true); console.log("End") }
+	   const loadStart= (e) => {setVisible(false); }
+	   const loadEnd=  (e) => {setVisible(true); }
        
   return (	
-    <View style={[style.container, {hidden: (visible ? false: true)}]}>	
+    <View style={[style.container, {opacity: (visible ? 1: 0)}]}>	
 		<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
 			<View style={style.head}>
                 <StreetAvatar OnLoadStart={loadStart} onLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />

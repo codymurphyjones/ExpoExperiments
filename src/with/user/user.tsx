@@ -26,8 +26,6 @@ export function withUser(Component) {
   return props => {
     const { user, setUser } = useContext(UserContext);
     function Test(userData) {
-      console.log("User set as:");
-      console.log(userData);
       setUser(userData);
     }
 

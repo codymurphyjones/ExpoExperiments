@@ -8,13 +8,12 @@ import PostingList from '../features/Posting/PostingList';
 import ScreenArea from '../components/ScreenArea';
 
 import { withTheme } from '../with/theme'
+import {withUser} from "../with/user"
 
 import { firestore, storage } from '../utils'
 
-
-
 const MainScreen = (props) => {
-  let userDB = firestore.collection("UserData").doc("mager1794");
+  let userDB;;
   let postDB = firestore.collection("posts");
 
   //userdata
@@ -27,7 +26,7 @@ const MainScreen = (props) => {
 
   //postings
   const [posts,setPosts] = useState({});
-
+/*
   useEffect(() => {
   let query = userDB.get()
     .then(doc => {
@@ -48,12 +47,19 @@ const MainScreen = (props) => {
    
   });
 },[]);
-  	
+*/
 
-  
+useEffect(() => {
+  if(props.User.isLoaded) {
+      setName(props.User.name)
+      setLocation(props.User.location)
+      setBio(props.User.bio);
+      setFollowing(props.User.following);
+      setFollower(props.User.followers);
+      setTickers(props.User.tickers);
 
-	  useEffect(() => {
-		let query = postDB.where('User','==',userDB).get()
+      console.log(props.User.uid)
+      let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
 		  .then(snapshot => {
 			  if (snapshot.empty) {
 				
@@ -75,7 +81,38 @@ const MainScreen = (props) => {
 		.catch(err => {
 		  
 		});
-	  },[]);
+
+  }
+        /*setLocation(data.location)
+        setBio(data.bio);
+        setFollowing(data.following);
+        setFollower(data.followers);
+        setTickers(data.tickers);*/
+        /*console.log(props.User)
+        let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
+		  .then(snapshot => {
+			  if (snapshot.empty) {
+				
+				return;
+			  }  
+	  
+			  let postCollection = {};
+			  snapshot.forEach(doc => {
+				let data = doc.data();
+				postCollection[doc.id] = {
+				  id: doc.id,
+				  body: data.body,
+				  ticker: data.ticker,
+			  }
+			});
+			
+			setPosts(postCollection);
+		  })
+		.catch(err => {
+		  
+		});*/
+      
+},[props.User]);
 
 
 
@@ -109,4 +146,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(MainScreen);
+export default withTheme(withUser(MainScreen));

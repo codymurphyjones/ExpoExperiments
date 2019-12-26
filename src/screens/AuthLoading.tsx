@@ -7,9 +7,11 @@ import Button from '../components/Button';
 import IconTextBox from '../components/IconTextBox';
 
 import { withTheme } from '../with/theme'
+import {withUser} from '../with/user'
 
-import { auth, firestore } from '../utils'
+import { auth, firestore, storage } from '../utils'
 
+    
 function sleep(miliseconds) {
   var currentTime = new Date().getTime();
 
@@ -49,19 +51,60 @@ const Login = (props) => {
   return postCollection;
 }
 
-  async function getData() {
+async function getUserData(uid) {
+  let userDB = firestore.collection("UserData").doc(uid);
+  let query = userDB.get()
+    .then(doc => {
+        if (doc.empty) {
+          
+          return;
+        }  
+        let data = doc.data();
+        storage.ref(data.profile).getDownloadURL().then((url: string) => { 
+          let obj = {
+            name: data.firstname + " " + data.lastname,
+            location: data.location,
+            bio: data.bio,
+            following: data.following,
+            followers: data.followers,
+            tickers: data.tickers,
+            profile: data.profile,
+            profileUrl: url,
+            uid: uid,
+            isLoaded: true
+          }
+          
+          props.setUser(obj); 
+        });
+        
+    })
+  .catch(err => {
+   
+  });
+}
+
+async function getUser(userDB) {
+
+            getUserData(userDB.uid);
+    }
+  
+
+  async function getData(userAuth) {
+    await getUser(userAuth)
     let postings = await getPostDB();
     
     props.navigation.navigate("Home", { postings}) 
     
   }
 
+  
     useEffect(() => {
-      auth.onAuthStateChanged(function(user) {
-          if (user) {
-              var uid = user.uid;
-              var providerData = user.providerData;
-              getData();
+      auth.onAuthStateChanged(function(userAuth) {
+          if (userAuth) {
+              var uid = userAuth.uid;
+              var providerData = userAuth.providerData;
+
+              getData(userAuth);
           } else {
               
               props.navigation.navigate("Auth") 
@@ -69,6 +112,8 @@ const Login = (props) => {
           }
       });
   }, [])
+
+
   
   
   return (
@@ -100,4 +145,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(Login);
+export default withTheme(withUser(Login));
