@@ -1,5 +1,5 @@
 // Main.js
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, forwardRef} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Button from '../../components/Button';
@@ -7,6 +7,7 @@ import IconTextBox from '../../components/IconTextBox';
 
 import {emailValidate, passwordValidate} from './validations';
 import HiddenIconTextBox from './HiddenIconTextBox';
+import Testbox from '../../components/TestBox'
 
 import { withTheme } from '../../with/theme'
 
@@ -26,6 +27,10 @@ const UserAuthentication = props => {
   //email
   const [email,setEmail] = useState("");
   const [isEmail,setIsEmail] = useState(true);
+
+
+  ////References
+  const textbox = useRef(null);
 
 
   useEffect(() => {
@@ -70,8 +75,8 @@ const UserAuthentication = props => {
           </View>
           <View style={{marginBottom: 50, width:"80%", flex: 1}}> 
               <HiddenIconTextBox show={!isSignIn} borderColor={(handle.length < 3 && !isSignIn) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }} icon="at-sign" placeholder="Handle" />
-              <IconTextBox borderColor={(!isEmail && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)) }} width="100%" icon="user" placeholder="Email address"  />
-              <IconTextBox borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
+              <IconTextBox onSubmit={() => {textbox.current.focus()}} borderColor={(!isEmail && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)) }} width="100%" icon="user" placeholder="Email address"  />
+              <Testbox ref={textbox} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
               <HiddenIconTextBox show={!isSignIn} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(password,text,isSignIn)) }} icon="shield" placeholder="Confirm password" password={true}  />
               <View style={{flex: 1,alignItems: 'center',
     justifyContent: 'center',}}> 

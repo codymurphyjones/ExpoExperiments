@@ -15,7 +15,7 @@ import { auth } from '../../utils'
 
 const HiddenIconTextBox = props => {
   if(props.show || false){
-        return (<IconTextBox borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
+        return (<IconTextBox onSubmit={props.onSubmit} borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
   }
 
   return (<View></View>)

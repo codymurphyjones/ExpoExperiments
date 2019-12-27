@@ -6,16 +6,6 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { withTheme } from '../with/theme';
 
 const IconTextBox = React.forwardRef((props, ref) => {
-
-	function onKeyPress(e) {
-		if(e.nativeEvent.key == 'Enter' && props.onSubmit)
-			props.onSubmit();
-			
-	}
-
-	function onFocus(e) {
-
-	}
 	
   return (
     <View style={{ backgroundColor: 'rgba(0,0,0,0)', width: props.width||'80%', marginTop: 5, marginBottom: 5 }}>
@@ -35,7 +25,7 @@ const IconTextBox = React.forwardRef((props, ref) => {
 				 alignItems: 'center'
    			}}>
 				<Icon name={props.icon || "search"} style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
-				<TextInput onKeyPress={onKeyPress} onChangeText={props.onChangeText}
+				<TextInput ref={ref} onKeyPress={onKeyPress} onChangeText={props.onChangeText}
 						 placeholder={props.placeholder || "Enter search"} secureTextEntry={props.password || false} style={{ fontSize:12, width: "80%", height: 32 }} />
 			</View>
 		</View>

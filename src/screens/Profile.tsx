@@ -27,28 +27,7 @@ const MainScreen = (props) => {
 
   //postings
   const [posts,setPosts] = useState({});
-/*
-  useEffect(() => {
-  let query = userDB.get()
-    .then(doc => {
-        if (doc.empty) {
-          
-          return;
-        }  
-        let data = doc.data();
-        setName(data.firstname + " " + data.lastname)
-        setLocation(data.location)
-        setBio(data.bio);
-        setFollowing(data.following);
-        setFollower(data.followers);
-        setTickers(data.tickers);
-        
-    })
-  .catch(err => {
-   
-  });
-},[]);
-*/
+
 
 useEffect(() => {
   if(props.User.isLoaded) {
