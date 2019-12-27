@@ -23,7 +23,7 @@ export const ThemeContextProvider = ({ children }) => {
 export function withTheme(Component) {
   return ({forwardedRef, ...props})  => {
     const { themeID, setThemeID } = useContext(ThemeContext);
-
+    console.log(forwardedRef)
     const getTheme = themeID => ThemeDefinitions.find(theme => theme.key === themeID);
     const setTheme = themeID => setThemeID(themeID);
 
