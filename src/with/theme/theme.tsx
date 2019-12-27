@@ -12,7 +12,6 @@ const ThemeContext = React.createContext();
 export const ThemeContextProvider = ({ children }) => {
 	const [themeID, setThemeID] = useState(ThemeDefinitions[0].key);
 
-	
   return (
     <ThemeContext.Provider value={{ themeID, setThemeID }}>
       {children}
@@ -22,7 +21,7 @@ export const ThemeContextProvider = ({ children }) => {
 
 
 export function withTheme(Component) {
-  return props => {
+  return ({forwardedRef, ...props})  => {
     const { themeID, setThemeID } = useContext(ThemeContext);
 
     const getTheme = themeID => ThemeDefinitions.find(theme => theme.key === themeID);
@@ -31,6 +30,7 @@ export function withTheme(Component) {
     return (
       <Component
         {...props}
+        ref={forwardedRef}
         themes={ThemeDefinitions}
         theme={getTheme(themeID)}
         setTheme={setTheme}

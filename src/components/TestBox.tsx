@@ -25,7 +25,7 @@ const IconTextBox = React.forwardRef((props, ref) => {
 				 alignItems: 'center'
    			}}>
 				<Icon name={props.icon || "search"} style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
-				<TextInput ref={ref} onKeyPress={onKeyPress} onChangeText={props.onChangeText}
+				<TextInput ref={ref}
 						 placeholder={props.placeholder || "Enter search"} secureTextEntry={props.password || false} style={{ fontSize:12, width: "80%", height: 32 }} />
 			</View>
 		</View>
