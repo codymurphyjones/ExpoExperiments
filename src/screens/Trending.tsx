@@ -10,7 +10,7 @@ import { withTheme } from '../with/theme'
 
 const Trending = (props) => {
 
-  let postDB = firestore.collection("posts");
+  let postDB = firestore.collection("trends");
   const [posts,setPosts] = useState({});
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Trending = (props) => {
             id: doc.id,
             body: data.body,
             ticker: data.ticker,
-            img: storage.ref(data.img)
+            img: storage.ref(data.image)
         }
       });
 

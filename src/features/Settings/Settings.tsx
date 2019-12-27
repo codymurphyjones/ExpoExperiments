@@ -9,6 +9,7 @@ import IconTextBox from '../../components/IconTextBox'
 import { withTheme } from '../../with/theme'
 
 import { auth } from '../../utils'
+import {loadTrending} from './actions'
 
 let myWidth = "100%"
 
@@ -18,14 +19,36 @@ let SettingComponents = {
     let SignIn = () => { auth.signOut().then(function() {
     }); };
 
+    let showAdmin = isWebView => {
+        return isWebView ? (<Button onPress={()=> {props.navigateTo("Admin");}} icon="server" width={myWidth} iconColor="#ffaa22" bold={true}>Admin Panel</Button>) : <></>
+    }
+
     return (<><View style={{width: "65%"}}>  
                   <Button onPress={()=> {props.navigateTo("Notification");}} icon="bell" width={myWidth} iconColor="#ffaa22" bold={true}>Notifications</Button>
                   <Button onPress={()=> {props.navigateTo("Privacy");}}  icon="lock" width={myWidth} iconColor="#ffaa22" bold={true}>Privacy</Button>
-                  <Button onPress={()=> {props.navigateTo("Account");}} icon="user" width={myWidth} iconColor="#ffaa22" bold={true}>Account</Button>
+                  {showAdmin(props.isWebView)}
+                  <Button onPress={()=> {loadTrending()}} icon="user" width={myWidth} iconColor="#ffaa22" bold={true}>Account</Button>
                   <Button onPress={()=> {props.navigateTo("Feedback");}} icon="award" width={myWidth} iconColor="#ffaa22" bold={true}>Feedback</Button>
           </View>
         <View style={{ width: "65%", marginTop: 50}}>  
               <Button onPress={()=> {props.navigateTo("About");}} icon="info" width={myWidth} iconColor="#ffaa22" bold={true}>About</Button>
+              <Button onPress={SignIn} icon="log-out" width={myWidth} iconColor="#ffaa22" bold={true}>Logout</Button>
+      </View></>)
+  },
+  Admin: (props) => {
+
+    let SignIn = () => { auth.signOut().then(function() {
+    }); };
+
+
+    return (<><View style={{width: "65%"}}>  
+                  <Button onPress={()=> {loadTrending()}} icon="trending-up" width={myWidth} iconColor="#ffaa22" bold={true}>Trending</Button>
+                  <Button onPress={()=> {}}  icon="users" width={myWidth} iconColor="#ffaa22" bold={true}>Users</Button>
+                  <Button onPress={()=> {}} icon="globe" width={myWidth} iconColor="#ffaa22" bold={true}>Reviews</Button>
+                  <Button onPress={()=> {}} icon="activity" width={myWidth} iconColor="#ffaa22" bold={true}>Idk yet</Button>
+          </View>
+        <View style={{ width: "65%", marginTop: 50}}>  
+        <Button onPress={() => { props.navigateTo("Main")}} icon="skip-back" width={myWidth} iconColor="#ffaa22" bold={true}>Go Back</Button>
               <Button onPress={SignIn} icon="log-out" width={myWidth} iconColor="#ffaa22" bold={true}>Logout</Button>
       </View></>)
   },
@@ -91,12 +114,12 @@ let SettingComponents = {
 const Settings = (props) => {
   const [activeComponent, setActiveComponent] = useState("Main");
   console.log(activeComponent);
-
+  console.log(props.isWebView)
   let MyComponent = SettingComponents[activeComponent];
   return (<>
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginBottom: 20}]}>{activeComponent == "Main" ? "Settings" : activeComponent}</Text>
 		    <View style={style.container2}> 
-            <MyComponent navigateTo={setActiveComponent} />
+            <MyComponent navigateTo={setActiveComponent} isWebView={props.isWebView} />
          
       </View></>
   );

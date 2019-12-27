@@ -5,16 +5,15 @@ import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../../with/theme';
 import HideComponent from "../../components/HideComponent"
+import StreetPostOptions from './StreetPostOptions'
+import StreetComments from './StreetComments'
 
-const TrendPost = props => {
+const StreetPost = props => {
 	const [visible,setVisible] = useState(false);
+	const [showComments,setShowComments] = useState(false);
 	
 	const [count, setCount] = useState(props.count | 0);
 	const [vote, setVote] = useState(props.count | 0);
-	
-	/*useEffect(() => {
-	props.src.getDownloadURL().then((url: string) => { setImage(url);  });
-	}, []);*/
     
     function OnUpPress() {
 			if(vote <= 0) {
@@ -43,25 +42,8 @@ const TrendPost = props => {
 				<Text style={{ color: props.textColor}}>{props.children}</Text>
 			</View>
 		</View>
-		<View style={style.bottom}>
-            <View style={style.icon}>
-                <Icon name="share" style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
-                <Text>6</Text>
-            </View>
-			<View style={style.icon}>
-                <Icon name="message-circle" style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
-                <Text>6</Text>
-            </View>
-			<View style={style.icon}>
-            <TouchableHighlight onPress={OnUpPress}>
-                <Icon name="chevron-up" style={{ fontSize: 15, padding: 5, paddingRight:10, color: (vote > 0) ? "green" : "#000" }}  />
-            </TouchableHighlight>
-                <Text style={{color: (vote > 0) ? "green" : ((vote < 0) ? "red" : "#000") }}>{count}</Text>
-            <TouchableHighlight onPress={OnDownPress}>
-                <Icon name="chevron-down" style={{ fontSize: 15, padding: 5, paddingRight:10, color: (vote < 0) ? "red" : "#000" }}  />
-            </TouchableHighlight>
-            </View>
-		</View>
+		<StreetPostOptions showComments={showComments} OnPressComment={()=>{ setShowComments(!showComments)}} OnUpPress={OnUpPress} OnDownPress={OnDownPress} shares={6} count={count} vote={vote} comments={10} />
+		<StreetComments showComments={showComments} />
 	</View>
   );
 };
@@ -107,4 +89,4 @@ const style = StyleSheet.create({
   }
 });
 
-export default withTheme(TrendPost);
+export default withTheme(StreetPost);

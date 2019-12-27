@@ -2,15 +2,15 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import ScreenArea from '../components/ScreenArea';
-import Button from '../components/Button';
-import IconTextBox from '../components/IconTextBox';
+import ScreenArea from '../../components/ScreenArea';
+import Button from '../../components/Button';
+import IconTextBox from '../../components/IconTextBox';
 
-import { withTheme } from '../with/theme'
+import { withTheme } from '../../with/theme'
 
-import { auth } from '../utils'
+import { auth } from '../../utils'
 
-import Settings from '../features/Settings/Settings'
+import Settings from '../../features/Settings/Settings'
 
 
 const Login = (props) => {
@@ -35,7 +35,7 @@ const Login = (props) => {
     <ScreenArea backgroundColor={props.theme.backgroundColor}>
 	    <View style={style.container}>
       
-          <Settings />
+          <Settings isWebView={props.isWebView} />
          
       </View>
     
