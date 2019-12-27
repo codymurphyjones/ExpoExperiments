@@ -1,5 +1,5 @@
 // TabBar.js
-import React, {forwardRef} from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
@@ -25,12 +25,13 @@ const IconTextBox = React.forwardRef((props, ref) => {
 				 alignItems: 'center'
    			}}>
 				<Icon name={props.icon || "search"} style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
-				<TextInput ref={ref}
+				<TextInput
 						 placeholder={props.placeholder || "Enter search"} secureTextEntry={props.password || false} style={{ fontSize:12, width: "80%", height: 32 }} />
 			</View>
 		</View>
 	</View>
   );
 });
+
 
 export default withTheme(IconTextBox);

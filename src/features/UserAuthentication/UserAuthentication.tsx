@@ -7,7 +7,6 @@ import IconTextBox from '../../components/IconTextBox';
 
 import {emailValidate, passwordValidate} from './validations';
 import HiddenIconTextBox from './HiddenIconTextBox';
-import Testbox from '../../components/TestBox'
 
 import { withTheme } from '../../with/theme'
 
@@ -30,13 +29,15 @@ const UserAuthentication = props => {
 
 
   ////References
-  const textbox = useRef(null);
+  const passwordBox = useRef(null);
+  const emailBox = useRef(null);
+  const confirmpasswordBox = useRef(null);
 
 
   useEffect(() => {
     auth.onAuthStateChanged(function(user) {
         if (user) {
-          props.navigation.navigate("AuthLoading") 
+         props.navigation.navigate("AuthLoading") 
         } 
     });
   }, [])
@@ -74,10 +75,10 @@ const UserAuthentication = props => {
               <Text style={[style.text, { marginTop: -10,color: '#ffaa22', fontSize: 32, fontWeight: 'bold' }]}>{isSignIn ? "Sign in" : "Sign up"}</Text>
           </View>
           <View style={{marginBottom: 50, width:"80%", flex: 1}}> 
-              <HiddenIconTextBox show={!isSignIn} borderColor={(handle.length < 3 && !isSignIn) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }} icon="at-sign" placeholder="Handle" />
-              <IconTextBox onSubmit={() => {textbox.current.focus()}} borderColor={(!isEmail && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)) }} width="100%" icon="user" placeholder="Email address"  />
-              <Testbox ref={textbox} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
-              <HiddenIconTextBox show={!isSignIn} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(password,text,isSignIn)) }} icon="shield" placeholder="Confirm password" password={true}  />
+              <HiddenIconTextBox onSubmit={() => {emailBox.current.focus()}} show={!isSignIn} borderColor={(handle.length < 3 && !isSignIn) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }} icon="at-sign" placeholder="Handle" />
+              <IconTextBox ref={emailBox} onSubmit={() => {passwordBox.current.focus()}} borderColor={(!isEmail && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)) }} width="100%" icon="user" placeholder="Email address"  />
+              <IconTextBox ref={passwordBox} onSubmit={() => { isSignIn ? submitButton() : confirmpasswordBox.current.focus()}} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
+              <HiddenIconTextBox ref={confirmpasswordBox} onSubmit={() => {submitButton()}} show={!isSignIn} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(password,text,isSignIn)) }} icon="shield" placeholder="Confirm password" password={true}  />
               <View style={{flex: 1,alignItems: 'center',
     justifyContent: 'center',}}> 
                   <Text style={[style.text, { margin: 0,color: 'maroon', fontSize: 12, marginTop: 25 }]}>{error}</Text>

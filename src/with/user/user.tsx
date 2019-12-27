@@ -23,7 +23,7 @@ export const UserContextProvider = ({ children }) => {
 
 
 export function withUser(Component) {
-  return ({forwardedRef, ...props})  => {
+  return (props)  => {
     const { user, setUser } = useContext(UserContext);
     function Test(userData) {
       setUser(userData);
@@ -31,7 +31,6 @@ export function withUser(Component) {
 
     return (
       <Component
-        ref={forwardedRef}
         {...props}
         User={user}
         setUser={Test}

@@ -13,12 +13,12 @@ import { withTheme } from '../../with/theme'
 import { auth } from '../../utils'
 
 
-const HiddenIconTextBox = props => {
+const HiddenIconTextBox = React.forwardRef((props, ref) => {
   if(props.show || false){
-        return (<IconTextBox onSubmit={props.onSubmit} borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
+        return (<IconTextBox ref={ref} onSubmit={props.onSubmit} borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
   }
 
   return (<View></View>)
-};
+});
 
 export default withTheme(HiddenIconTextBox);
