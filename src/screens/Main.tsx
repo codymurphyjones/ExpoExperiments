@@ -9,36 +9,15 @@ import { withTheme } from '../with/theme'
 
 import { firestore } from '../utils'
 
-const Main = (props) => {
+type MainProps = {
+  navigation?: any,
+  theme?: any
+}
+
+const Main = (props: MainProps) => {
   let postDB = firestore.collection("posts");
   let myPost = {}
   const [posts,setPosts] = useState(props.navigation.getParam('postings',{}));
-  
-  
-  /*useEffect(() => {
-  let query = postDB.get()
-    .then(snapshot => {
-        if (snapshot.empty) {
-          
-          return;
-        }  
-
-        let postCollection = {};
-        snapshot.forEach(doc => {
-          let data = doc.data();
-          postCollection[doc.id] = {
-            id: doc.id,
-            body: data.body,
-            ticker: data.ticker,
-            user: data.User
-        }
-      });
-      setPosts(postCollection);
-    })
-  .catch(err => {
-    
-  });
-},[]);*/
 
 
 

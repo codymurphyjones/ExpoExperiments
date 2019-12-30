@@ -1,16 +1,24 @@
 // TabBar.js
-import React from 'react';
+import React, {useMemo} from 'react';
 import { View, StyleSheet } from 'react-native';
 import StreetPost from './StreetPost'
 
 import { withTheme } from '../../with/theme';
 
-const TrendingList = props => {
+type StreetPostListProps = {
+  posts: any,
+  theme: any
+}
+
+let Post = (user: any,id: any, ticker: string, profile: string, body:string, textColor:string) => {
+    return () => (<StreetPost key={id} user={user} name="Kyle Myers" textColor={textColor} ticker={ticker} src={profile}>{body}</StreetPost>)
+  }
+
+const StreetPostList = (props: StreetPostListProps) => {
   const listItems = Object.keys(props.posts).map((id) => {
     let data = props.posts[id];
-    return (
-      <StreetPost key={id} user={data.user} name="Kyle Myers" textColor="#000" ticker={data.ticker} src={data.profile}>{data.body}</StreetPost>
-    );
+    
+    return useMemo(Post(data.user,id,data.ticker,data.profile,data.body,props.theme.color),[props.posts]);
   }
   );
 	
@@ -31,12 +39,4 @@ const style = StyleSheet.create({
   }
 });
 
-export default withTheme(TrendingList);
-
-/*
-<View style={style.container}>
-			<StreetPost count={7} name="Kyle Myers" textColor="#000" ticker="AAPL" src={require('../../assets/avatars/firstavatar.png')}>This is my posting about my opinion on this stock, I'm not saying its a fact its just a thought</StreetPost>
-			<StreetPost count={32} name="Fraces Fuller" textColor="#000" ticker="MSFT" src={require('../../assets/avatars/2avatar.png')}>This is my posting about my opinion on this stock, I'm not saying its a fact its just a thought</StreetPost>
-			<StreetPost count={2} name="Cody Jones"  textColor="#000" ticker="TSLA" src={require('../../assets/avatar.png')}>This is my posting about my opinion on this stock, I'm not saying its a fact its just a thought</StreetPost>
-    </View>
-    */
+export default withTheme(StreetPostList);

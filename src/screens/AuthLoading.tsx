@@ -3,8 +3,6 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
 import ScreenArea from '../components/ScreenArea';
-import Button from '../components/Button';
-import IconTextBox from '../components/IconTextBox';
 
 import { withTheme } from '../with/theme'
 import {withUser} from '../with/user'
@@ -12,14 +10,15 @@ import {withUser} from '../with/user'
 import { auth, firestore, storage } from '../utils'
 
     
-function sleep(miliseconds) {
-  var currentTime = new Date().getTime();
-
-  while (currentTime + miliseconds >= new Date().getTime()) {
-  }
+type AuthLoadingProps = {
+  navigation?: any,
+  theme?: any,
+  setUser?: any,
+  User?: any
 }
 
-const Login = (props) => {
+
+const AuthLoading = (props: AuthLoadingProps) => {
     
 
   async function getPostDB() {
@@ -53,14 +52,16 @@ const Login = (props) => {
 
 async function getUserData(uid) {
   let userDB = firestore.collection("UserData").doc(uid);
-  let query = userDB.get()
+  let query =  await userDB.get()
     .then(doc => {
-        if (doc.empty) {
+        if (!doc.exists) {
           
           return;
         }  
         let data = doc.data();
+    
         storage.ref(data.profile).getDownloadURL().then((url: string) => { 
+          console.log(data.profile)
           let obj = {
             name: data.firstname + " " + data.lastname,
             location: data.location,
@@ -83,16 +84,11 @@ async function getUserData(uid) {
   });
 }
 
-async function getUser(userDB) {
-
-            getUserData(userDB.uid);
-    }
   
 
   async function getData(userAuth) {
-    await getUser(userAuth)
+    await getUserData(userAuth.uid)
     let postings = await getPostDB();
-    
    props.navigation.navigate("Home", { postings}) 
     
   }
@@ -103,7 +99,7 @@ async function getUser(userDB) {
           if (userAuth) {
               var uid = userAuth.uid;
               var providerData = userAuth.providerData;
-
+              console.log("getData")
               getData(userAuth);
           } else {
               
@@ -111,7 +107,7 @@ async function getUser(userDB) {
               
           }
       });
-  }, [])
+  })
 
 
   
@@ -145,4 +141,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(withUser(Login));
+export default withTheme(withUser(AuthLoading));

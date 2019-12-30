@@ -5,7 +5,12 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import { withTheme } from '../with/theme';
 
-const SearchBox = props => {
+type SearchBoxProps = {
+	onSubmit?(): void
+  }
+
+
+const SearchBox = (props: SearchBoxProps) => {
 
 	
 	function onKeyPress(e) {

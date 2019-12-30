@@ -12,7 +12,14 @@ import {withUser} from "../with/user"
 
 import { firestore, storage } from '../utils'
 
-const MainScreen = (props) => {
+type ProfileScreenProps = {
+  navigation?: any,
+  theme?: any,
+  setUser?: any,
+  User?: any
+}
+
+const ProfileScreen = (props: ProfileScreenProps) => {
   let userDB;;
   let postDB = firestore.collection("posts");
 
@@ -30,6 +37,8 @@ const MainScreen = (props) => {
 
 
 useEffect(() => {
+  console.log("Profile")
+  console.log(props.User)
   if(props.User.isLoaded) {
       setName(props.User.name)
       setLocation(props.User.location)
@@ -39,7 +48,7 @@ useEffect(() => {
       setTickers(props.User.tickers);
       setImage(props.User.profileUrl)
 
-      console.log(props.User.uid)
+   
       let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
 		  .then(snapshot => {
 			  if (snapshot.empty) {
@@ -64,34 +73,6 @@ useEffect(() => {
 		});
 
   }
-        /*setLocation(data.location)
-        setBio(data.bio);
-        setFollowing(data.following);
-        setFollower(data.followers);
-        setTickers(data.tickers);*/
-        /*console.log(props.User)
-        let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
-		  .then(snapshot => {
-			  if (snapshot.empty) {
-				
-				return;
-			  }  
-	  
-			  let postCollection = {};
-			  snapshot.forEach(doc => {
-				let data = doc.data();
-				postCollection[doc.id] = {
-				  id: doc.id,
-				  body: data.body,
-				  ticker: data.ticker,
-			  }
-			});
-			
-			setPosts(postCollection);
-		  })
-		.catch(err => {
-		  
-		});*/
       
 },[props.User]);
 
@@ -127,4 +108,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(withUser(MainScreen));
+export default withTheme(withUser(ProfileScreen));

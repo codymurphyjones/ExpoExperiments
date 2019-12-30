@@ -5,21 +5,30 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { StyleSheet, Text, View } from 'react-native';
-import { ThemeContextProvider } from './src/with/theme'
+import { ThemeContextProvider } from '../src/with/theme'
 
 import Icon from 'react-native-vector-icons/Feather';
 
-import MainScreen from './src/screens/Main';
-import SettingsScreen from './src/screens/Settings';
-import Profile from './src/screens/Profile';
-import Trending from './src/screens/Trending';
-import Login from './src/screens/Login';
-import AuthLoading from './src/screens/AuthLoading';
+import MainScreen from '../src/screens/Main';
+import SettingsScreen from '../src/screens/Settings';
+import Profile from '../src/screens/Profile';
+import Trending from '../src/screens/Trending';
+import Login from '../src/screens/Login';
+import AuthLoading from '../src/screens/AuthLoading';
 
-import TabBar from './src/components/TabBar';
-import {UserContextProvider} from './src/with/user'
+import TabBar from '../src/components/TabBar';
+import {UserContextProvider} from '../src/with/user'
 
-console.reportErrorsAsExceptions = false;
+/*
+react-navigation
+react-navigation-stack
+react-navigation-tabs
+react-native-vector-icons
+firebase
+node-iex-cloud
+react-native-gesture-handler
+*/
+
 
 const navIconSize = 24;
 
@@ -63,14 +72,19 @@ const TabNavigator = createBottomTabNavigator(
 	tabBarOptions: {
 		showLabel: false,
 		showIcon: true,
-		tintColor: '#900',
-		activeTintColor: '#a49',
+		inactiveTintColor: 'red',
+    activeTintColor: 'red'
+    
     },
     lazy: false
   },
   
 
 );
+/*
+inactiveTintColor: '#900',
+    activeTintColor: '#a49',
+    */
 
 const AppContainer = createAppContainer(
   createSwitchNavigator(
@@ -80,8 +94,7 @@ const AppContainer = createAppContainer(
       Auth: Login,
     },
     {
-      initialRouteName: 'AuthLoading',
-      lazy: false
+      initialRouteName: 'AuthLoading'
     }
   )
 );

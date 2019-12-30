@@ -2,18 +2,23 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import ScreenArea from '../../components/ScreenArea';
-import Button from '../../components/Button';
 import IconTextBox from '../../components/IconTextBox';
 
-import {emailValidate, passwordValidate} from './validations';
 
 import { withTheme } from '../../with/theme'
 
-import { auth } from '../../utils'
+type HiddenIconTextBoxProps = {
+  show?: boolean,
+  onSubmit?(): void,
+  onChangeText?(): void,
+  icon?: string,
+  placeholder?: string,
+  password?: boolean,
+  borderColor?: string
+}
 
 
-const HiddenIconTextBox = React.forwardRef((props, ref) => {
+const HiddenIconTextBox = React.forwardRef((props: HiddenIconTextBoxProps, ref) => {
   if(props.show || false){
         return (<IconTextBox ref={ref} onSubmit={props.onSubmit} borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
   }

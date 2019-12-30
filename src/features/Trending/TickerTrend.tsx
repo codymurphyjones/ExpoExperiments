@@ -5,8 +5,15 @@ import { View, Text } from 'react-native';
 import { withTheme } from '../../with/theme';
 
 import { iex } from '../../utils'
+import Quote from "node-iex-cloud/lib/types/Quote";
 
-const TickerTrend = props => {
+type TickerTrendProps = {
+  ticker: string,
+  color?: string,
+  vertical?: boolean
+}
+
+const TickerTrend = (props: TickerTrendProps) => {
   const [price, setPrice] = useState(0.0);
   const [difference, setdifference] = useState(0.0);
   const [visible, setVisible] = useState(false);
@@ -15,7 +22,7 @@ const TickerTrend = props => {
   useEffect(() => {
     iex
     .symbol(stock).quote()
-    .then(res => { 
+    .then((res : Quote) => { 
         setdifference(res.changePercent);
         setPrice(res.latestPrice);
         setVisible(true);

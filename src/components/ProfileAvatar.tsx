@@ -10,27 +10,28 @@ import HideComponent from "./HideComponent"
 
 import { storage } from '../utils'
 
+type ProfileAvatarProps = {
+	uri?: string
+  }
 
 
-const ProfileAvatar = props => {
+
+const ProfileAvatar = (props: ProfileAvatarProps) => {
 	const [visisble,setVisible] = useState(true);
 
-	console.log(props.uri);
   return (
-	  <HideComponent show={visisble} >
-    <View style={{ flex: 1,flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 10, width: '100%', }}>
-		<Button padding={2} color="green">New</Button>
-		<View
-			style={{
-				justifyContent: 'center',
-				borderRadius: 35
-		}}>
-			<Image onLoadStart={(e) => setVisible(false)} onLoadStart={(e) => setVisible(true)} style={styles.stretch} source={{uri: props.uri}}  ></Image>
-		</View>
+    	<View style={{ flex: 1,flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 10, width: '100%', }}>
+			<Button padding={2} color="green">New</Button>
+			<View
+				style={{
+					justifyContent: 'center',
+					borderRadius: 35
+			}}>
+				<Image onLoadStart={(e) => setVisible(false)} onLoadEnd={(e) => setVisible(true)} style={styles.stretch} source={{uri: props.uri}}  ></Image>
+			</View>
 
-		<Button padding={2}  color="#f59d0c">Followed</Button>
-	</View>
-	</HideComponent>
+			<Button padding={2}  color="#f59d0c">Followed</Button>
+		</View>
   );
 };
 

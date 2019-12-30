@@ -1,13 +1,19 @@
 import React, { useContext, useState } from 'react';
 
 
-const UserContext = React.createContext();
 
 let userObject = {
   name: "Cody Jones",
   handle: "mager1794"
 }
 
+
+export type UserProviderTypes = {
+  user?: any,
+  setUser?: any
+    }
+
+const UserContext = React.createContext({} as UserProviderTypes);
 
 
 export const UserContextProvider = ({ children }) => {
@@ -25,15 +31,12 @@ export const UserContextProvider = ({ children }) => {
 export function withUser(Component) {
   return (props)  => {
     const { user, setUser } = useContext(UserContext);
-    function Test(userData) {
-      setUser(userData);
-    }
 
     return (
       <Component
         {...props}
         User={user}
-        setUser={Test}
+        setUser={setUser}
       />
     );
   };

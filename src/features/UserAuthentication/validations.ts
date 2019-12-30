@@ -1,14 +1,3 @@
-// Main.js
-import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-
-import ScreenArea from '../../components/ScreenArea';
-import Button from '../../components/Button';
-import IconTextBox from '../../components/IconTextBox';
-
-import { withTheme } from '../../with/theme'
-
-import { auth } from '../../utils'
 
 
 export const emailValidate = (email) => {

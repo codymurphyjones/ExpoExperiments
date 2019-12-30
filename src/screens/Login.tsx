@@ -1,17 +1,18 @@
 // Main.js
-import React, {useState, useEffect} from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
 import ScreenArea from '../components/ScreenArea';
-import Button from '../components/Button';
-import IconTextBox from '../components/IconTextBox';
 import { UserAuthentication } from '../features/UserAuthentication';
 
 import { withTheme } from '../with/theme'
 
-//
+type LoginProps = {
+  navigation?: any,
+  theme?: any
+}
 
-const Login = (props) => {
+const Login = (props: LoginProps) => {
 
   let SignIn = () => { props.navigation.navigate("AuthLoading") };
 

@@ -7,7 +7,15 @@ import Ticker from '../../components/Ticker'
 import TickerTrend from './TickerTrend'
 import { withTheme } from '../../with/theme';
 
-const TrendPost = props => {
+type TrendPostProps = {
+	src: any,
+	textColor: string,
+	ticker: string,
+	children: React.ReactNode
+  }
+  
+
+const TrendPost = (props: TrendPostProps) => {
 	const [image,setImage] = useState("./");
 	const [visisble,setVisible] = useState(true);
 

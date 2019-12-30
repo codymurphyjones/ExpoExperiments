@@ -5,6 +5,17 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import { withTheme } from '../with/theme';
 
+type ProfileAvatarProps = {
+	color?: string,
+	children?: React.ReactNode,
+	following?: number,
+	followers?: number,
+	tickers?: string,
+	name?: string,
+	location?: string
+	}
+  
+
 const UserAccountDetails = props => {
 	
   return (

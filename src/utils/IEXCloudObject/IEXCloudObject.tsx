@@ -1,4 +1,5 @@
 import { IEXCloudClient } from "node-iex-cloud";
+
 import config from '../../config'
 
 const fetch = require("node-fetch");
@@ -12,3 +13,4 @@ const iex = new IEXCloudClient(fetch, {
 });
 
 export default iex;
+

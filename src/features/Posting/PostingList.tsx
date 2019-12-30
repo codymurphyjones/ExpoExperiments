@@ -2,11 +2,16 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Posting from './Posting'
-import { firestore, storage } from "../firebase"
+import { firestore, storage } from "../../utils/firebase"
 
-import { withTheme } from '../../with/theme';
+import { withTheme, ThemePropTypes } from '../../with/theme';
 
-const PostingList = props => {
+type PostingListProps = {
+  posts?: any,
+  theme?: ThemePropTypes
+  }
+
+const PostingList = (props: PostingListProps) => {
 
 const listItems = Object.keys(props.posts).map((id) => {
     let data = props.posts[id];

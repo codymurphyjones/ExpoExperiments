@@ -5,8 +5,11 @@ import TrendPost from './TrendPost'
 
 import { withTheme } from '../../with/theme';
 
+type TrendingListProps = {
+  posts?: any
+}
 
-const TrendingList = props => {
+const TrendingList = (props: TrendingListProps) => {
 	const listItems = Object.keys(props.posts).map((id) => {
     let data = props.posts[id];
 

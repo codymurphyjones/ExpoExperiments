@@ -8,6 +8,7 @@ import {AsyncStorage} from 'react-native';
 import { firestore, storage } from '../utils'
 import { withTheme } from '../with/theme'
 
+
 const Trending = (props) => {
 
   let postDB = firestore.collection("trends");
