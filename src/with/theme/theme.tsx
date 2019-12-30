@@ -20,7 +20,12 @@ export type ThemeProviderTypes = {
 const themes = ThemeDefinitions;
 const theme = ThemeDefinitions[0];
 
-const ThemeContext = React.createContext({} as ThemeProviderTypes);
+const ThemeContext = React.createContext({
+  backgroundColor: "#fff",
+  color: "#000",
+  secondaryColor: "#fff",
+  secondaryBackgroundColor: "#000"
+} as ThemeProviderTypes);
 
 
 export const ThemeContextProvider = ({ children }) => {

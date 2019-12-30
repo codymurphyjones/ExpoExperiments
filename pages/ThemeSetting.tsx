@@ -8,9 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { withTheme } from '@with/theme'
+import { withTheme, ThemePropTypes } from '../src/with/theme'
 
-const SettingsScreen = (props) => {
+type SettingsScreenProps = {
+  setTheme?: any,
+  theme?: any,
+  themes?: ThemePropTypes
+}
+
+const SettingsScreen = (props: SettingsScreenProps) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => props.setTheme(item.key)}>
       <View
@@ -30,8 +36,8 @@ const SettingsScreen = (props) => {
     <FlatList
       style={style.container}
       ListHeaderComponent={
-        <Text style={[style.headline, { color: props.theme.backgroundColor }]}>
-          Choose your theme:
+        <Text style={[style.headline, { color: props.theme.backgroundColor || "#000" }]}>
+          Choose your theme?:
         </Text>
       }
       data={props.themes}

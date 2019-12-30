@@ -1,12 +1,13 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
-import SearchBox from '@Components/SearchBox';
-import TrendingList from '@Features/Trending/TrendingList';
-import ScreenArea from '@Components/ScreenArea';
+import SearchBox from '../src/components/SearchBox';
+import TrendingList from '../src/features/Trending/TrendingList';
+import ScreenArea from '../src/components/ScreenArea';
 import {AsyncStorage} from 'react-native';
-import { firestore, storage } from '@utils'
-import { withTheme } from '@with/theme'
+import { firestore, storage } from '../src/utils'
+import { withTheme } from '../src/with/theme'
+
 
 const Trending = (props) => {
 

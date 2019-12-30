@@ -1,49 +1,28 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import SearchBox from '@Components/SearchBox';
-import StreetList from '@Features/Street/StreetList';
-import ScreenArea from '@Components/ScreenArea';
+import SearchBox from '../src/components/SearchBox';
+import StreetList from '../src/features/Street/StreetList';
+import ScreenArea from '../src/components/ScreenArea';
 
 import { withTheme } from '../src/with/theme'
 
-import { firestore } from '@utils'
+import { firestore } from '../src/utils'
 
-const Main = (props) => {
+type MainProps = {
+  navigation?: any,
+  theme?: any
+}
+
+const Main = (props: MainProps) => {
   let postDB = firestore.collection("posts");
   let myPost = {}
   const [posts,setPosts] = useState(props.navigation.getParam('postings',{}));
-  
-  
-  /*useEffect(() => {
-  let query = postDB.get()
-    .then(snapshot => {
-        if (snapshot.empty) {
-          
-          return;
-        }  
-
-        let postCollection = {};
-        snapshot.forEach(doc => {
-          let data = doc.data();
-          postCollection[doc.id] = {
-            id: doc.id,
-            body: data.body,
-            ticker: data.ticker,
-            user: data.User
-        }
-      });
-      setPosts(postCollection);
-    })
-  .catch(err => {
-    
-  });
-},[]);*/
 
 
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor}>
+    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
     <View style={[style.container, { backgroundColor: 'rgba(255,255,255,0)',  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
 	    <View style={[style.container, {marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
         <SearchBox />

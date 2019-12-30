@@ -2,18 +2,25 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import ScreenArea from '@Components/ScreenArea';
-import Button from '@Components/Button';
-import IconTextBox from '@Components/IconTextBox';
+import ScreenArea from '../../src/components/ScreenArea';
 
-import { withTheme } from '@with/theme'
+import { withTheme } from '../../src/with/theme'
 
-import { auth } from '@utils'
+import { auth } from '../../src/utils'
 
-import Settings from '@Features/Settings/Settings'
+import Settings from '../../src/features/Settings/Settings'
 
 
-const Login = (props) => {
+type MainProps = {
+  navigation?: any,
+  theme?: any,
+  isWebView?: boolean
+}
+
+
+
+
+const Main = (props) => {
 
   useEffect(() => {
     auth.onAuthStateChanged(function(user) {
@@ -32,7 +39,7 @@ const Login = (props) => {
 
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor}>
+    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
 	    <View style={style.container}>
       
           <Settings isWebView={props.isWebView} />
@@ -59,4 +66,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(Login);
+export default withTheme(Main);

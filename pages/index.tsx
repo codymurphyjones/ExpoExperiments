@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // App.js
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -10,12 +9,12 @@ import { ThemeContextProvider } from '../src/with/theme'
 
 import Icon from 'react-native-vector-icons/Feather';
 
-import MainScreen from '../src/screens/Main';
-import SettingsScreen from '../src/screens/Settings';
-import Profile from '../src/screens/Profile';
-import Trending from '../src/screens/Trending';
-import Login from '../src/screens/Login';
-import AuthLoading from '../src/screens/AuthLoading';
+import MainScreen from './Main';
+import SettingsScreen from './Settings';
+import Profile from './Profile';
+import Trending from './Trending';
+import Login from './Login';
+import AuthLoading from './AuthLoading';
 
 import TabBar from '../src/components/TabBar';
 import {UserContextProvider} from '../src/with/user'
@@ -73,8 +72,6 @@ const TabNavigator = createBottomTabNavigator(
 	tabBarOptions: {
 		showLabel: false,
 		showIcon: true,
-		inactiveTintColor: 'red',
-    activeTintColor: 'red'
     
     },
     lazy: false
@@ -120,7 +117,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-=======
-// Use next.js page for the mobile app
-export { default } from './App'
->>>>>>> f2553a9d27b59fac99d8580b19a650f79cc1c865
+
+
+

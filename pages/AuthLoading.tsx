@@ -2,24 +2,23 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-import ScreenArea from '@Components/ScreenArea';
-import Button from '@Components/Button';
-import IconTextBox from '@Components/IconTextBox';
+import ScreenArea from '../src/components/ScreenArea';
 
-import { withTheme } from '@with/theme'
-import {withUser} from '@with/user'
+import { withTheme } from '../src/with/theme'
+import {withUser} from '../src/with/user'
 
-import { auth, firestore, storage } from '@utils'
+import { auth, firestore, storage } from '../src/utils'
 
     
-function sleep(miliseconds) {
-  var currentTime = new Date().getTime();
-
-  while (currentTime + miliseconds >= new Date().getTime()) {
-  }
+type AuthLoadingProps = {
+  navigation?: any,
+  theme?: any,
+  setUser?: any,
+  User?: any
 }
 
-const Login = (props) => {
+
+const AuthLoading = (props: AuthLoadingProps) => {
     
 
   async function getPostDB() {
@@ -55,7 +54,7 @@ async function getUserData(uid) {
   let userDB = firestore.collection("UserData").doc(uid);
   let query = userDB.get()
     .then(doc => {
-        if (doc.empty) {
+        if (doc.exists) {
           
           return;
         }  
@@ -117,7 +116,7 @@ async function getUser(userDB) {
   
   
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor}>
+    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
 	    <View style={style.container}>
 		    <View style={style.container2}> 
             <ActivityIndicator size="large" color="#ffaa22" />
@@ -145,4 +144,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(withUser(Login));
+export default withTheme(withUser(AuthLoading));

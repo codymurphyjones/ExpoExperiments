@@ -1,5 +1,5 @@
 // TabBar.js
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../../with/theme';
@@ -14,7 +14,6 @@ type StreetPostProps = {
 	ticker?: string,
 	textColor?: string
 }
-
 
 const StreetPost = (props: StreetPostProps) => {
 	const [visible,setVisible] = useState(false);
@@ -37,28 +36,8 @@ const StreetPost = (props: StreetPostProps) => {
 		}
 	   }
 	   
-	   const loadStart= (e) => {setVisible(false); console.log("start")}
-	   const loadEnd=  (e) => {setVisible(true);  console.log("end")}
-
-
-	   let Post = (props: StreetPostProps) => {
-		return () => (	
-			<View style={[style.container, {opacity: (visible ? 1: 0)}]}>	
-				<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
-					<View style={style.head}>
-						<StreetAvatar OnLoadStart={loadStart} OnLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
-					</View>
-					<View style={style.content}>
-						<Text style={{ color: props.textColor}}>{props.children}</Text>
-					</View>
-				</View>
-				<StreetPostOptions showComments={showComments} OnPressComment={()=>{ setShowComments(!showComments)}} OnUpPress={OnUpPress} OnDownPress={OnDownPress} shares={6} count={count} vote={vote} comments={10} />
-				<StreetComments showComments={showComments} />
-			</View>
-		  )
-	  }
-
-
+	   const loadStart= (e) => {setVisible(false); console.log("I do for sure")}
+	   const loadEnd=  (e) => {setVisible(true); console.log("Do I happen?") }
        
   return (	
     <View style={[style.container, {opacity: (visible ? 1: 0)}]}>	

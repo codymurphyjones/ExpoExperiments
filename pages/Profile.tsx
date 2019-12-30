@@ -1,18 +1,25 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import SearchBox from '@Components/SearchBox';
-import ProfileAvatar from '@Components/ProfileAvatar';
-import UserAccountDetails from '@Components/UserAccountDetails';
-import PostingList from '@Features/Posting/PostingList';
-import ScreenArea from '@Components/ScreenArea';
+import SearchBox from '../src/components/SearchBox';
+import ProfileAvatar from '../src/components/ProfileAvatar';
+import UserAccountDetails from '../src/components/UserAccountDetails';
+import PostingList from '../src/features/Posting/PostingList';
+import ScreenArea from '../src/components/ScreenArea';
 
-import { withTheme } from '@with/theme'
-import {withUser} from "@with/user"
+import { withTheme } from '../src/with/theme'
+import {withUser} from "../src/with/user"
 
-import { firestore, storage } from '@utils'
+import { firestore, storage } from '../src/utils'
 
-const MainScreen = (props) => {
+type ProfileScreenProps = {
+  navigation?: any,
+  theme?: any,
+  setUser?: any,
+  User?: any
+}
+
+const ProfileScreen = (props: ProfileScreenProps) => {
   let userDB;;
   let postDB = firestore.collection("posts");
 
@@ -39,7 +46,7 @@ useEffect(() => {
       setTickers(props.User.tickers);
       setImage(props.User.profileUrl)
 
-      console.log(props.User.uid)
+   
       let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
 		  .then(snapshot => {
 			  if (snapshot.empty) {
@@ -64,34 +71,6 @@ useEffect(() => {
 		});
 
   }
-        /*setLocation(data.location)
-        setBio(data.bio);
-        setFollowing(data.following);
-        setFollower(data.followers);
-        setTickers(data.tickers);*/
-        /*console.log(props.User)
-        let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
-		  .then(snapshot => {
-			  if (snapshot.empty) {
-				
-				return;
-			  }  
-	  
-			  let postCollection = {};
-			  snapshot.forEach(doc => {
-				let data = doc.data();
-				postCollection[doc.id] = {
-				  id: doc.id,
-				  body: data.body,
-				  ticker: data.ticker,
-			  }
-			});
-			
-			setPosts(postCollection);
-		  })
-		.catch(err => {
-		  
-		});*/
       
 },[props.User]);
 
@@ -100,7 +79,7 @@ useEffect(() => {
 
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor}>
+    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
     <View style={[style.container, { backgroundColor: props.theme.backgroundColor || "#fff", paddingTop: 20 }]}>
 	    <View style={style.container}>
         <SearchBox />
@@ -127,4 +106,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default withTheme(withUser(MainScreen));
+export default withTheme(withUser(ProfileScreen));
