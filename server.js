@@ -2,11 +2,18 @@ const express = require('express')
 const next = require('next')
 const cors = require('cors')
 const dev = process.env.NODE_ENV !== 'production'
+<<<<<<< HEAD
 const port = process.argv[process.argv.length - 1].replace("$PORT", "3000")
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
 
+=======
+const port = process.argv[2].replace("$PORT", "3000");;
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+>>>>>>> f2553a9d27b59fac99d8580b19a650f79cc1c865
 app.prepare()
 .then(() => {
   const server = express()

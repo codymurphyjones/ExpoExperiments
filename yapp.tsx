@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // App.js
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -120,7 +119,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-=======
-// Use next.js page for the mobile app
-export { default } from './App'
->>>>>>> f2553a9d27b59fac99d8580b19a650f79cc1c865
