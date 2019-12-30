@@ -8,6 +8,7 @@
     "dev": "expo start --web",
     "eject": "expo eject",
     "web": "next dev",
+	"build": "",
     "serve": "node ./server.js $PORT"
   },
   "dependencies": {
