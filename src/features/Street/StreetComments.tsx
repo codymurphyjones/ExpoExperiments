@@ -4,10 +4,14 @@ import { View, Text, StyleSheet, TouchableHighlight, Image  } from 'react-native
 import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../../with/theme';
-import HideComponent from "../../components/HideComponent"
 import StreetComment from './StreetComment'
 
-const StreetComments = props => {
+type StreetCommentsProps = {
+  showComments?: boolean
+}
+
+
+const StreetComments = (props: StreetCommentsProps) => {
     if(!props.showComments)
         return (<></>)
        

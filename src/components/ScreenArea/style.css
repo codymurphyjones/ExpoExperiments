@@ -1,7 +1,7 @@
 .container {
 	flex: 1; 
 	height: "100%"; 
-	background-color: props.backgroundColor; 
+	background-color: "#FFF";
 	overflow-y: scroll;
 	margin: 'auto'; 
 	scrollbar-width: none; /* Firefox */

@@ -4,11 +4,17 @@ import { View } from 'react-native';
 
 import { withTheme } from '../with/theme'
 
+type HideComponentProps = {
+  show?: boolean,
+  children?: React.ReactNode
+  }
 
 
-const HideComponent = props => {
-  if(props.show){
-        return (<>{props.children}</>)
+
+
+const HideComponent = ({show, children}: HideComponentProps) => {
+  if(show){
+        return (<>{children}</>)
   }
 
   return (<View></View>)

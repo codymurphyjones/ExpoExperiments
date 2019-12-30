@@ -38,7 +38,7 @@ import { firestore } from '../../utils'
     let postings = await getPostDB();
     for (var key of Object.keys(postings)) {
       let {id,...posting} = postings[key];
-      console.log(posting)
+
       firestore.collection("trends").doc().set(posting)
     }
   }

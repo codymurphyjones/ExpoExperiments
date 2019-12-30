@@ -8,12 +8,17 @@ import IconTextBox from '../../components/IconTextBox';
 import {emailValidate, passwordValidate} from './validations';
 import HiddenIconTextBox from './HiddenIconTextBox';
 
-import { withTheme } from '../../with/theme'
+import { withTheme, ThemePropTypes} from '../../with/theme'
 
 import { auth } from '../../utils'
 
+type UserAuthenticationProps = {
+  navigation?: any,
+  theme?: ThemePropTypes
+}
 
-const UserAuthentication = props => {
+
+const UserAuthentication = (props: UserAuthenticationProps) => {
   const [error,setError] = useState("");
   //Toggle SignIn/SignUp
   const [isSignIn,setisSignIn] = useState(true);
@@ -77,7 +82,7 @@ const UserAuthentication = props => {
           <View style={{marginBottom: 50, width:"80%", flex: 1}}> 
               <HiddenIconTextBox onSubmit={() => {emailBox.current.focus()}} show={!isSignIn} borderColor={(handle.length < 3 && !isSignIn) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }} icon="at-sign" placeholder="Handle" />
               <IconTextBox ref={emailBox} onSubmit={() => {passwordBox.current.focus()}} borderColor={(!isEmail && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)) }} width="100%" icon="user" placeholder="Email address"  />
-              <IconTextBox ref={passwordBox} onSubmit={() => { isSignIn ? submitButton() : confirmpasswordBox.current.focus()}} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
+              <IconTextBox ref={passwordBox} onSubmit={() => { isSignIn ? submitButton() : confirmpasswordBox.current.focus()}} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm,isSignIn)) }}width="100%" icon="lock" placeholder="Password" password={true}  />
               <HiddenIconTextBox ref={confirmpasswordBox} onSubmit={() => {submitButton()}} show={!isSignIn} borderColor={(!isPass && !isSignIn) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(password,text,isSignIn)) }} icon="shield" placeholder="Confirm password" password={true}  />
               <View style={{flex: 1,alignItems: 'center',
     justifyContent: 'center',}}> 
@@ -86,7 +91,7 @@ const UserAuthentication = props => {
           </View>
           <View style={{alignItems: "center", width: "80%"}}>  
               <Button onPress={submitButton} width="100%" color={ (isSignIn || (isEmail && isPass)) ? "#ffaa22" : "red"}>Submit</Button>
-              <Button onPress={() => { setisSignIn(!isSignIn); setIsEmail(emailValidate(email)) }} maxWidth={120} width="100%" color="#ffaa22" textColor="#000">{isSignIn ? "Sign Up" : "Sign In"}</Button>
+              <Button onPress={() => { setisSignIn(!isSignIn); setIsEmail(emailValidate(email)) }} maxWidth={120} width="100%" color="#ffaa22" textColor={ props.theme.color}>{isSignIn ? "Sign Up" : "Sign In"}</Button>
           </View>
          
       </View>

@@ -1,14 +1,21 @@
 // TabBar.js
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../../with/theme';
-import HideComponent from "../../components/HideComponent"
 import StreetPostOptions from './StreetPostOptions'
 import StreetComments from './StreetComments'
 
-const StreetPost = props => {
+type StreetPostProps = {
+	count?: number,
+	children?: React.ReactNode,
+	user?: string,
+	name?: string,
+	ticker?: string,
+	textColor?: string
+}
+
+const StreetPost = (props: StreetPostProps) => {
 	const [visible,setVisible] = useState(false);
 	const [showComments,setShowComments] = useState(false);
 	
@@ -29,14 +36,14 @@ const StreetPost = props => {
 		}
 	   }
 	   
-	   const loadStart= (e) => {setVisible(false); }
-	   const loadEnd=  (e) => {setVisible(true); }
+	   const loadStart= (e) => {setVisible(false); console.log("I do for sure")}
+	   const loadEnd=  (e) => {setVisible(true); console.log("Do I happen?") }
        
   return (	
     <View style={[style.container, {opacity: (visible ? 1: 0)}]}>	
 		<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
 			<View style={style.head}>
-                <StreetAvatar OnLoadStart={loadStart} onLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
+                <StreetAvatar OnLoadStart={loadStart} OnLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
 			</View>
 			<View style={style.content}>
 				<Text style={{ color: props.textColor}}>{props.children}</Text>

@@ -4,7 +4,13 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { withTheme } from '../with/theme';
 
-const Ticker = props => {
+interface TickerProps {
+  color?: string,
+  children?: React.ReactNode
+  }
+
+
+const Ticker = (props: TickerProps) => {
 	
   return (
     <View

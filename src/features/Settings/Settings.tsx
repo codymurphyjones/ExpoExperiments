@@ -2,19 +2,32 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import ScreenArea from '../components/ScreenArea';
+import ScreenArea from '../../components/ScreenArea';
 import Button from '../../components/Button';
-import IconTextBox from '../../components/IconTextBox'
 
-import { withTheme } from '../../with/theme'
+import { withTheme, ThemePropTypes } from '../../with/theme'
 
 import { auth } from '../../utils'
 import {loadTrending} from './actions'
 
+type SettingSubComponentsProps = {
+  navigateTo?(string): void,
+  isWebView?: boolean
+  }
+
+  type SettingSubComponents = {
+    theme?: ThemePropTypes,
+    isWebView?: boolean
+    }
+
+
+
+
+
 let myWidth = "100%"
 
 let SettingComponents = {
-  Main: (props) => {
+  Main: (props: SettingSubComponentsProps) => {
 
     let SignIn = () => { auth.signOut().then(function() {
     }); };
@@ -35,7 +48,7 @@ let SettingComponents = {
               <Button onPress={SignIn} icon="log-out" width={myWidth} iconColor="#ffaa22" bold={true}>Logout</Button>
       </View></>)
   },
-  Admin: (props) => {
+  Admin: (props: SettingSubComponentsProps) => {
 
     let SignIn = () => { auth.signOut().then(function() {
     }); };
@@ -52,7 +65,7 @@ let SettingComponents = {
               <Button onPress={SignIn} icon="log-out" width={myWidth} iconColor="#ffaa22" bold={true}>Logout</Button>
       </View></>)
   },
-  Feedback: (props) => {
+  Feedback: (props: SettingSubComponentsProps) => {
 
     return (<><View style={{width: "65%"}}>   
                   <Button onPress={()=> {props.navigateTo("Main");}} icon="bell" width={myWidth} iconColor="#ffaa22" bold={true}>Submit Feedback</Button>
@@ -63,7 +76,7 @@ let SettingComponents = {
               <Button onPress={() => { props.navigateTo("Main")}} icon="skip-back" width={myWidth} iconColor="#ffaa22" bold={true}>Go Back</Button>
       </View></>)
   },
-  Notification: (props) => {
+  Notification: (props: SettingSubComponentsProps) => {
 
     return (<><View style={{width: "65%"}}> 
                   <Button onPress={()=> {props.navigateTo("Main");}} icon="bell" width={myWidth} iconColor="#ffaa22" bold={true}>Toggle Notifications</Button>
@@ -73,7 +86,7 @@ let SettingComponents = {
               <Button onPress={() => { props.navigateTo("Main")}} icon="skip-back" width={myWidth} iconColor="#ffaa22" bold={true}>Go Back</Button>
       </View></>)
   },
-  Account: (props) => {
+  Account: (props: SettingSubComponentsProps) => {
 
     return (<><View style={{width: "65%"}}> 
                   <Button onPress={()=> {props.navigateTo("Main");}} icon="bell" width={myWidth} iconColor="#ffaa22" bold={true}>Update First Name</Button>
@@ -85,7 +98,7 @@ let SettingComponents = {
               <Button onPress={() => { props.navigateTo("Main")}} icon="skip-back" width={myWidth} iconColor="#ffaa22" bold={true}>Go Back</Button>
       </View></>)
   },
-  About: (props) => {
+  About: (props: SettingSubComponentsProps) => {
 
     return (<><View style={{width: "65%"}}> 
                   <Text style={{fontSize: 28, textAlign: 'center', marginBottom: 15}}>TickerShare</Text>
@@ -97,7 +110,7 @@ let SettingComponents = {
               <Button onPress={() => { props.navigateTo("Main")}} icon="skip-back" width={myWidth} iconColor="#ffaa22" bold={true}>Go Back</Button>
       </View></>)
   },
-  Privacy: (props) => {
+  Privacy: (props: SettingSubComponentsProps) => {
 
     return (<><View style={{width: "65%"}}>  
                   <Button onPress={()=> {props.navigateTo("Main");}} icon="bell" width={myWidth} iconColor="#ffaa22" bold={true}>Toggle Data Storing</Button>
@@ -111,10 +124,9 @@ let SettingComponents = {
 }
 
 
-const Settings = (props) => {
+const Settings = (props: SettingSubComponents) => {
   const [activeComponent, setActiveComponent] = useState("Main");
-  console.log(activeComponent);
-  console.log(props.isWebView)
+  
   let MyComponent = SettingComponents[activeComponent];
   return (<>
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginBottom: 20}]}>{activeComponent == "Main" ? "Settings" : activeComponent}</Text>

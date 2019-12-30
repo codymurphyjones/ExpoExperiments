@@ -8,7 +8,12 @@ import Ticker from '../../components/Ticker'
 
 import { withTheme } from '../../with/theme';
 
-const Posting = props => {
+type PostingProps = {
+	ticker?: string,
+	children?: React.ReactNode
+  }
+
+const Posting = (props: PostingProps) => {
 	
   return (
     <View style={style.container}>	

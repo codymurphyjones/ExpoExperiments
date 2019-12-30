@@ -2,15 +2,24 @@
 import React, { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Ticker from '../../components/Ticker'
-import { withTheme } from '../../with/theme';
+import { withTheme, ThemePropTypes } from '../../with/theme';
 
 
 
 import { storage } from '../../utils'
 
+type StreetAvatarComponents = {
+  theme?: ThemePropTypes,
+  color?: string,
+  ticker?: string,
+  OnLoadStart?(): void,
+  OnLoadEnd?(): void,
+  user?: any
+}
 
 
-const StreetAvatar = props => {
+
+const StreetAvatar = (props: StreetAvatarComponents) => {
   const [name, setName] = useState("");
   const [image,setImage] = useState("./");
 
@@ -46,7 +55,7 @@ const StreetAvatar = props => {
                 alignSelf: 'center'
 		}}>
         <Image onLoadStart={props.OnLoadStart}
-            onLoadEnd={props.onLoadEnd}
+            onLoadEnd={props.OnLoadEnd}
             style={styles.stretch} source={{uri:image}} ></Image>
         <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
