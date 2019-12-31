@@ -23,14 +23,16 @@ type MainProps = {
 const Main = (props) => {
 
   useEffect(() => {
-    auth.onAuthStateChanged(function(user) {
-        if (user) {
-          
-        } else {
+    let unsubscribe = auth.onAuthStateChanged(function(userAuth) {
+      if (!userAuth) {
           props.navigation.navigate("AuthLoading") 
-        }
+      }
     });
-  }, [])
+    
+    return () => {
+      unsubscribe();
+    }
+}, [])
 
     let myWidth = "100%"
 
@@ -39,7 +41,7 @@ const Main = (props) => {
 
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
+    <ScreenArea backgroundColor="#fff">
 	    <View style={style.container}>
       
           <Settings isWebView={props.isWebView} />

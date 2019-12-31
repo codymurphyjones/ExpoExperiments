@@ -7,9 +7,8 @@
     "ios": "expo start --ios",
     "dev": "expo start --web",
     "eject": "expo eject",
-    "web": "next dev",
-	"build": "",
-    "serve": "node ./server.js $PORT"
+    "build": "expo build:web",
+    "serve": "cd web-build && now --name TickerShareWebApp"
   },
   "dependencies": {
     "@expo/next-adapter": "^2.0.0-beta.7",
@@ -17,12 +16,14 @@
     "axios": "^0.19.0",
     "cors": "^2.8.5",
     "expo": "^36.0.0",
+    "expo-cli": "^3.11.3",
     "firebase": "^7.6.1",
     "module-alias": "^2.2.2",
     "next": "^9.1.4",
     "next-fonts": "^0.19.0",
     "next-images": "^1.2.0",
     "node-iex-cloud": "^1.6.1",
+    "now": "^16.7.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",

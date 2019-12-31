@@ -1,5 +1,5 @@
 // Main.js
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 import IconTextBox from '../../components/IconTextBox';
@@ -19,11 +19,16 @@ type HiddenIconTextBoxProps = {
 
 
 const HiddenIconTextBox = React.forwardRef((props: HiddenIconTextBoxProps, ref) => {
+  let output;
   if(props.show || false){
-        return (<IconTextBox ref={ref} onSubmit={props.onSubmit} borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
+    output = (<IconTextBox ref={ref} onSubmit={props.onSubmit} borderColor={props.borderColor}  onChangeText={props.onChangeText} width="100%" icon={props.icon} placeholder={props.placeholder} password={props.password || false} />)
+  }
+  else
+  {
+      output = (<View></View>)
   }
 
-  return (<View></View>)
+  return useMemo(() => output, [props])
 });
 
 export default withTheme(HiddenIconTextBox);

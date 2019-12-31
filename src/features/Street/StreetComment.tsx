@@ -1,5 +1,5 @@
 // TabBar.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image  } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
@@ -7,7 +7,7 @@ import { withTheme } from '../../with/theme';
 
 const StreetComment = props => {
        
-  return (	
+  return useMemo(() => (	
 			<View style={style.comment}>
                 <View style={style.icon}>
                   <Image style={style.stretch} source={require('../../../assets/avatar.png')} ></Image>
@@ -17,7 +17,7 @@ const StreetComment = props => {
                     <Text>I definitely support and agree with your analysis, cant wait to see the money!</Text>
                     </View>
             </View>
-  );
+  ), [props])
 };
 
 const style = StyleSheet.create({

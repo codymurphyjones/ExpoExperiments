@@ -9,12 +9,13 @@ import { withTheme } from '../src/with/theme'
 
 import { firestore } from '../src/utils'
 
+/*
 type MainProps = {
   navigation?: any,
   theme?: any
-}
+}*/
 
-const Main = (props: MainProps) => {
+const Main = (props) => {
   let postDB = firestore.collection("posts");
   let myPost = {}
   const [posts,setPosts] = useState(props.navigation.getParam('postings',{}));
@@ -22,7 +23,7 @@ const Main = (props: MainProps) => {
 
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
+    <ScreenArea backgroundColor="#fff">
     <View style={[style.container, { backgroundColor: 'rgba(255,255,255,0)',  marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
 	    <View style={[style.container, {marginLeft: 0, marginRight: 0, paddingLeft: 0, paddingRight: 0}]}>
         <SearchBox />

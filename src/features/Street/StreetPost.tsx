@@ -1,5 +1,5 @@
 // TabBar.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from '../../with/theme';
@@ -39,7 +39,7 @@ const StreetPost = (props: StreetPostProps) => {
 	   const loadStart= (e) => {setVisible(false); console.log("I do for sure")}
 	   const loadEnd=  (e) => {setVisible(true); console.log("Do I happen?") }
        
-  return (	
+  return useMemo(() => (	
     <View style={[style.container, {opacity: (visible ? 1: 0)}]}>	
 		<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
 			<View style={style.head}>
@@ -52,7 +52,7 @@ const StreetPost = (props: StreetPostProps) => {
 		<StreetPostOptions showComments={showComments} OnPressComment={()=>{ setShowComments(!showComments)}} OnUpPress={OnUpPress} OnDownPress={OnDownPress} shares={6} count={count} vote={vote} comments={10} />
 		<StreetComments showComments={showComments} />
 	</View>
-  );
+  ),[props, visible, showComments, count, vote]);
 };
 
 const style = StyleSheet.create({

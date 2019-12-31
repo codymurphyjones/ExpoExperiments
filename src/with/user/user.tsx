@@ -7,6 +7,16 @@ let userObject = {
   handle: "mager1794"
 }
 
+export type UserDataTypes = {
+  name?: string,
+  location? : string,
+  bio?: string,
+  following?: string,
+  followers?: string,
+  tickers?: string,
+  profileUrl?: string
+    }
+
 
 export type UserProviderTypes = {
   user?: any,

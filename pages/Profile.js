@@ -12,14 +12,15 @@ import {withUser} from "../src/with/user"
 
 import { firestore, storage } from '../src/utils'
 
+/*
 type ProfileScreenProps = {
   navigation?: any,
   theme?: any,
   setUser?: any,
   User?: any
-}
+}*/
 
-const ProfileScreen = (props: ProfileScreenProps) => {
+const ProfileScreen = (props) => {
   let userDB;;
   let postDB = firestore.collection("posts");
 
@@ -36,8 +37,11 @@ const ProfileScreen = (props: ProfileScreenProps) => {
   const [posts,setPosts] = useState({});
 
 
-useEffect(() => {
+useEffect(() => { 
+  console.log(props)
+  
   if(props.User.isLoaded) {
+      console.log("test")
       setName(props.User.name)
       setLocation(props.User.location)
       setBio(props.User.bio);
@@ -79,8 +83,8 @@ useEffect(() => {
 
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
-    <View style={[style.container, { backgroundColor: props.theme.backgroundColor || "#fff", paddingTop: 20 }]}>
+    <ScreenArea backgroundColor="#fff">
+    <View style={[style.container, { backgroundColor: "#fff", paddingTop: 20 }]}>
 	    <View style={style.container}>
         <SearchBox />
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Profile</Text>

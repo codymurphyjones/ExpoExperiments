@@ -7,17 +7,18 @@ import { UserAuthentication } from '../src/features/UserAuthentication';
 
 import { withTheme } from '../src/with/theme'
 
+/*
 type LoginProps = {
   navigation?: any,
   theme?: any
-}
+}*/
 
-const Login = (props: LoginProps) => {
+const Login = (props) => {
 
   let SignIn = () => { props.navigation.navigate("AuthLoading") };
 
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
+    <ScreenArea backgroundColor="#fff">
       <UserAuthentication navigation={props.navigation} />
     </ScreenArea>
   );

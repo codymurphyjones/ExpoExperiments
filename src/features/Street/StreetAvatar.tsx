@@ -54,9 +54,9 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                 alignItems: 'center',
                 alignSelf: 'center'
 		}}>
-        <Image onLoadStart={props.OnLoadStart}
-            onLoadEnd={props.OnLoadEnd}
-            style={styles.stretch} source={{uri:image}} ></Image>
+            
+
+            {React.useMemo(() => { return (<Image onLoadStart={props.OnLoadStart} onLoadEnd={props.OnLoadEnd} style={styles.stretch} source={{uri: image}}  ></Image>)},[props,image])}
         <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
 		<Text style={{color: props.color, width: 80}}>2 mins ago</Text>

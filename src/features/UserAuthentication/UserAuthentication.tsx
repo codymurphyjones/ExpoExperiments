@@ -38,14 +38,17 @@ const UserAuthentication = (props: UserAuthenticationProps) => {
   const emailBox = useRef(null);
   const confirmpasswordBox = useRef(null);
 
-
   useEffect(() => {
-    auth.onAuthStateChanged(function(user) {
-        if (user) {
-         props.navigation.navigate("AuthLoading") 
-        } 
+    let unsubscribe = auth.onAuthStateChanged(function(userAuth) {
+      if (userAuth) {
+          props.navigation.navigate("AuthLoading") 
+      }
     });
-  }, [])
+    
+    return () => {
+      unsubscribe();
+    }
+}, [])
   
   async function createUser() {
     await auth.createUserWithEmailAndPassword(email, password).catch(function(myerror) {

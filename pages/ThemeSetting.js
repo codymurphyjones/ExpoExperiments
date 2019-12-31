@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 
 import { withTheme, ThemePropTypes } from '../src/with/theme'
-
+/*
 type SettingsScreenProps = {
   setTheme?: any,
   theme?: any,
   themes?: ThemePropTypes
-}
+}*/
 
-const SettingsScreen = (props: SettingsScreenProps) => {
+const SettingsScreen = (props) => {
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => props.setTheme(item.key)}>
       <View
@@ -36,7 +36,7 @@ const SettingsScreen = (props: SettingsScreenProps) => {
     <FlatList
       style={style.container}
       ListHeaderComponent={
-        <Text style={[style.headline, { color: props.theme.backgroundColor || "#000" }]}>
+        <Text style={[style.headline, { color: "#000"}]}>
           Choose your theme?:
         </Text>
       }

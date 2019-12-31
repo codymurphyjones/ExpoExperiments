@@ -9,16 +9,16 @@ import {withUser} from '../src/with/user'
 
 import { auth, firestore, storage } from '../src/utils'
 
-    
+    /*
 type AuthLoadingProps = {
   navigation?: any,
   theme?: any,
   setUser?: any,
   User?: any
-}
+}*/
 
 
-const AuthLoading = (props: AuthLoadingProps) => {
+const AuthLoading = (props) => {
     
 
   async function getPostDB() {
@@ -54,13 +54,16 @@ async function getUserData(uid) {
   let userDB = firestore.collection("UserData").doc(uid);
   let query = userDB.get()
     .then(doc => {
-        if (doc.exists) {
+        if (!doc.exists) {
           
           return;
         }  
+        
         let data = doc.data();
-        storage.ref(data.profile).getDownloadURL().then((url: string) => { 
-          let obj = {
+        
+        (async () => {
+          await storage.ref(data.profile).getDownloadURL().then((url: string) => { 
+         let obj = {
             name: data.firstname + " " + data.lastname,
             location: data.location,
             bio: data.bio,
@@ -72,9 +75,10 @@ async function getUserData(uid) {
             uid: uid,
             isLoaded: true
           }
-          
+          console.log(obj);
           props.setUser(obj); 
         });
+      })();
         
     })
   .catch(err => {
@@ -98,7 +102,7 @@ async function getUser(userDB) {
 
   
     useEffect(() => {
-      auth.onAuthStateChanged(function(userAuth) {
+      let unsubscribe = auth.onAuthStateChanged(function(userAuth) {
           if (userAuth) {
               var uid = userAuth.uid;
               var providerData = userAuth.providerData;
@@ -110,13 +114,17 @@ async function getUser(userDB) {
               
           }
       });
+      
+      return () => {
+        unsubscribe();
+      }
   }, [])
 
 
   
   
   return (
-    <ScreenArea backgroundColor={props.theme.backgroundColor || "#fff"}>
+    <ScreenArea backgroundColor="#fff">
 	    <View style={style.container}>
 		    <View style={style.container2}> 
             <ActivityIndicator size="large" color="#ffaa22" />
