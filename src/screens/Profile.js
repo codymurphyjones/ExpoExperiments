@@ -1,16 +1,16 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import SearchBox from '../src/components/SearchBox';
-import ProfileAvatar from '../src/components/ProfileAvatar';
-import UserAccountDetails from '../src/components/UserAccountDetails';
-import PostingList from '../src/features/Posting/PostingList';
-import ScreenArea from '../src/components/ScreenArea';
+import SearchBox from '../components/SearchBox';
+import ProfileAvatar from '../components/ProfileAvatar';
+import UserAccountDetails from '../components/UserAccountDetails';
+import PostingList from '../features/Posting/PostingList';
+import ScreenArea from '../components/ScreenArea';
 
-import { withTheme } from '../src/with/theme'
-import {withUser} from "../src/with/user"
+import { withTheme } from '../with/theme'
+import {withUser} from "../with/user"
 
-import { firestore, storage } from '../src/utils'
+import { firestore, storage } from '../utils'
 
 /*
 type ProfileScreenProps = {
@@ -38,10 +38,8 @@ const ProfileScreen = (props) => {
 
 
 useEffect(() => { 
-  console.log(props)
   
   if(props.User.isLoaded) {
-      console.log("test")
       setName(props.User.name)
       setLocation(props.User.location)
       setBio(props.User.bio);

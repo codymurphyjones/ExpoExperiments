@@ -2,10 +2,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import ScreenArea from '../src/components/ScreenArea';
-import { UserAuthentication } from '../src/features/UserAuthentication';
+import ScreenArea from '../components/ScreenArea';
+import { UserAuthentication } from '../features/UserAuthentication';
 
-import { withTheme } from '../src/with/theme'
+import { withTheme } from '../with/theme'
 
 /*
 type LoginProps = {

@@ -1,13 +1,13 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import SearchBox from '../src/components/SearchBox';
-import StreetList from '../src/features/Street/StreetList';
-import ScreenArea from '../src/components/ScreenArea';
+import SearchBox from '../components/SearchBox';
+import StreetList from '../features/Street/StreetList';
+import ScreenArea from '../components/ScreenArea';
 
-import { withTheme } from '../src/with/theme'
+import { withTheme } from '../with/theme'
 
-import { firestore } from '../src/utils'
+import { firestore } from '../utils'
 
 /*
 type MainProps = {
@@ -19,6 +19,8 @@ const Main = (props) => {
   let postDB = firestore.collection("posts");
   let myPost = {}
   const [posts,setPosts] = useState(props.navigation.getParam('postings',{}));
+  
+
 
 
 

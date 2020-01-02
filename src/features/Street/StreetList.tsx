@@ -1,5 +1,5 @@
 // TabBar.js
-import React from 'react';
+import React, {useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import StreetPost from './StreetPost'
 
@@ -11,11 +11,12 @@ type StreetPostListProps = {
 }
 
 const StreetPostList = (props: StreetPostListProps) => {
+
   const listItems = Object.keys(props.posts).map((id) => {
     let data = props.posts[id];
-    return (
+    return React.useMemo(() =>(
       <StreetPost key={id} user={data.user} name="Kyle Myers" textColor={props.theme.color} ticker={data.ticker} src={data.profile}>{data.body}</StreetPost>
-    );
+    ),[props.posts]);
   }
   );
 	

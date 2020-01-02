@@ -2,12 +2,13 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-import ScreenArea from '../src/components/ScreenArea';
+import ScreenArea from '$components/ScreenArea';
 
-import { withTheme } from '../src/with/theme'
-import {withUser} from '../src/with/user'
+import { withTheme } from '$with/theme'
+import {withUser} from '$with/user'
 
-import { auth, firestore, storage } from '../src/utils'
+
+import { auth, firestore, storage } from '$utils'
 
     /*
 type AuthLoadingProps = {
@@ -75,7 +76,6 @@ async function getUserData(uid) {
             uid: uid,
             isLoaded: true
           }
-          console.log(obj);
           props.setUser(obj); 
         });
       })();

@@ -16,7 +16,7 @@ type StreetPostProps = {
 }
 
 const StreetPost = (props: StreetPostProps) => {
-	const [visible,setVisible] = useState(false);
+	const [visible,setVisible] = useState(true);
 	const [showComments,setShowComments] = useState(false);
 	
 	const [count, setCount] = useState(props.count | 0);
@@ -36,14 +36,13 @@ const StreetPost = (props: StreetPostProps) => {
 		}
 	   }
 	   
-	   const loadStart= (e) => {setVisible(false); console.log("I do for sure")}
-	   const loadEnd=  (e) => {setVisible(true); console.log("Do I happen?") }
+	   const loadEnd=  (e) => {setVisible(true); }
        
   return useMemo(() => (	
     <View style={[style.container, {opacity: (visible ? 1: 0)}]}>	
 		<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
 			<View style={style.head}>
-                <StreetAvatar OnLoadStart={loadStart} OnLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
+                <StreetAvatar OnLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
 			</View>
 			<View style={style.content}>
 				<Text style={{ color: props.textColor}}>{props.children}</Text>

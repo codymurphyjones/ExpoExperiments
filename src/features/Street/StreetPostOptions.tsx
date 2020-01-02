@@ -20,7 +20,7 @@ type StreetPostOptionsProps = {
 
 const StreetPostOptions = (props: StreetPostOptionsProps) => {
        
-  return (	
+  return React.useMemo(() =>(	
 		<View style={style.bottom}>
             <View style={style.icon}>
               <TouchableHighlight onPress={onShare}>
@@ -48,7 +48,7 @@ const StreetPostOptions = (props: StreetPostOptionsProps) => {
             </TouchableHighlight>
             </View>
 		</View>
-  );
+  ), [props.vote, props.count,  props.showComments, props.shares, props.comments]);
 };
 
 const style = StyleSheet.create({
