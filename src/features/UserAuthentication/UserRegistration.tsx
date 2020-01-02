@@ -35,7 +35,7 @@ const UserRegistration = (props: UserInformationProps) => {
   const [confirm,setConfirm] = props.confirm;
   const [email,setEmail] = props.email;
   const [handle,setHandle] = props.name;
-  const [isPass,setIsPass] = props.isPass;
+  const [isPass,setIsPass] = useState(false);
 
  
 
@@ -44,21 +44,22 @@ const UserRegistration = (props: UserInformationProps) => {
   const [isConfirm,setIsConfirm] = useState(false);
 
   useEffect(() => {
+    console.log(handle.length < 3 , !isEmail , email.length < 3 , !isPass ,password.length < 3 , !isConfirm , confirm.length < 3)
     if(handle.length < 3  || !isEmail || email.length < 3 || !isPass || password.length < 3 || !isConfirm || confirm.length < 3) {
         props.canSubmit(false);
     }
     else
         props.canSubmit(true)
 
-   },[password,handle,email, confirm])
+   })
 
   
   return (	
     <View style={style.container}>
               <IconTextBox onSubmit={() => {emailBox.current.focus()}} borderColor={(handle.length < 3 ) ? "red" : "#bbb"}  onChangeText={text => { setHandle(text) }} icon="triangle" placeholder="Full Name" width="100%" />
               <IconTextBox ref={emailBox} onSubmit={() => {passwordBox.current.focus()}} borderColor={(!isEmail || email.length < 3) ? "red" : "#bbb"} onChangeText={text => { setEmail(text); setIsEmail(emailValidate(text)); }} width="100%" icon="user" placeholder="Email address"  />
-              <IconTextBox ref={passwordBox} onSubmit={() => { confirmpasswordBox.current.focus()}} borderColor={(!isPass  && password.length < 6) ? "red" : "#bbb"} onChangeText={text => { setPassword(text); setIsPass(passwordValidate(text,confirm)); setIsConfirm(text === confirm && isPass); }}width="100%" icon="lock" placeholder="Password" password={true}  />
-              <IconTextBox ref={confirmpasswordBox} onSubmit={() => {}}  borderColor={(!isConfirm || confirm.length < 6) ? "red" : "#bbb"} onChangeText={text => { setConfirm(text); setIsPass(passwordValidate(text,password)); setIsConfirm(password === text); }} icon="shield" placeholder="Confirm password" password={true} width="100%" />
+              <IconTextBox ref={passwordBox} onSubmit={() => { confirmpasswordBox.current.focus()}} borderColor={(!isPass  && password.length < 6) ? "red" : "#bbb"} onChangeText={text => { console.log(passwordValidate(text,confirm)); setIsPass(passwordValidate(text,confirm)); setIsConfirm(text === confirm); setPassword(text); console.log(confirm,text)}}width="100%" icon="lock" placeholder="Password" password={true}  />
+              <IconTextBox ref={confirmpasswordBox} onSubmit={() => {}}  borderColor={(!isConfirm || confirm.length < 6) ? "red" : "#bbb"} onChangeText={text => { console.log(passwordValidate(password,text)); setConfirm(text); setIsPass(passwordValidate(password,text)); setIsConfirm(password === text); console.log(text,password)}} icon="shield" placeholder="Confirm password" password={true} width="100%" />
               
       </View>
   );

@@ -11,6 +11,6 @@ export const passwordValidate = (password, confirm) => {
 
   return (
     (password.length > 6) &&
-    validate.test(String(confirm).toLowerCase())
+    validate.test(String(confirm))
   );
 };

@@ -78,7 +78,6 @@ const UserRegistration = (props: UserInformationProps) => {
               <IconTextBox ref={emailBox} onSubmit={() => {passwordBox.current.focus()}} borderColor={"#bbb"} onChangeText={text => { setYear(text); }} keyboardType='number-pad' width="100%" icon="calendar" placeholder="Birth Year"  />
               <IconTextBox ref={passwordBox} onSubmit={() => { confirmpasswordBox.current.focus()}} borderColor={"#bbb"} onChangeText={text => { setLocation(text) }}width="100%" icon="map-pin" placeholder="Location ex. United States,Texas, etc."   />
               <IconTextBox ref={confirmpasswordBox} onSubmit={() => {}}  borderColor={"#bbb"} onChangeText={text => { setBio(text) }} width="100%" icon="edit" placeholder="Bio"/>
-              
       </View>
   );
 };

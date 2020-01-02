@@ -15,7 +15,6 @@ var sha256 = require("js-sha256")
 
 
 import { auth, firestore } from 'Utils'
-import * as Crypto from 'expo-crypto';
 
 type UserAuthenticationProps = {
   navigation?: any,
@@ -37,7 +36,7 @@ const UserAuthentication = (props: UserAuthenticationProps) => {
   //passwords
   const [password,setPassword] = useState("");
   const [confirm,setConfirm] = useState("");
-  const [isPass,setIsPass,] = useState(false);
+
   //email
   const [email,setEmail] = useState("");
   const [isEmail,setIsEmail] = useState(true);
@@ -51,9 +50,6 @@ const UserAuthentication = (props: UserAuthenticationProps) => {
 
 
   ////References
-  const passwordBox = useRef(null);
-  const emailBox = useRef(null);
-  const confirmpasswordBox = useRef(null);
 
   useEffect(() => {
     let unsubscribe = auth.onAuthStateChanged(function(userAuth) {
@@ -126,7 +122,7 @@ const UserAuthentication = (props: UserAuthenticationProps) => {
   function returnAuthView(value: string) {
     let authView = {
       "default": (<UserLogin submit={submitButton} password={[password,setPassword]} email={[email,setEmail]} />),
-      "register": (<UserRegistration submitval={canSubmit} canSubmit={setcanSubmit} submit={submitButton} password={[password,setPassword]} email={[email,setEmail]} name={[name,setName]}  confirm={[confirm,setConfirm]} isSignIn={isSignIn} isPass={[isPass,setIsPass]} />),
+      "register": (<UserRegistration submitval={canSubmit} canSubmit={setcanSubmit} submit={submitButton} password={[password,setPassword]} email={[email,setEmail]} name={[name,setName]}  confirm={[confirm,setConfirm]} isSignIn={isSignIn} />),
         "info": (<UserInformation canSubmit={setcanSubmit} submit={submitButton} bio={[bio,setBio]} year={[year,setYear]} location={[location,setLocation]} handle={[handle,setHandle]} />)
     }
     return authView[value];
