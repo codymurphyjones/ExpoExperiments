@@ -93,8 +93,10 @@ async function getUser(userDB) {
   
 
   async function getData(userAuth) {
+    
     await getUser(userAuth)
     let postings = await getPostDB();
+
     
    props.navigation.navigate("Home", { postings}) 
     

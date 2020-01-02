@@ -19,11 +19,11 @@
     "jsx": "preserve",
 	"baseUrl": "./src",
 	"paths": {
-    "Components": ["./src/components"],
-    "Screens": ["./src/screens"],
-    "Features": ["./src/features"],
-    "With": ["./src/with"],
-    "Utils": ["./src/with"]
+    "Components/*": ["./src/components/*"],
+    "Screens/*": ["./src/screens/*"],
+    "Features/*": ["./src/features/*"],
+    "With/*": ["./src/with/*"],
+    "Utils/*": ["./src/utils/*"]
 	}
   },
   "exclude": [

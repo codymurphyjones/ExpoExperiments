@@ -92,7 +92,7 @@ const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoading,
-      App: TabNavigator,
+      App: MainScreen,
       Auth: Login,
     },
     {

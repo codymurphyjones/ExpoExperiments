@@ -45,7 +45,6 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
   },[]);
 
   async function onLoadEndRun() {
-    console.log("Loaded");
     
     await setTimeout(() => {
       setLoad(true);
