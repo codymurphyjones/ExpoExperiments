@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { withTheme } from '../with/theme';
+import { withTheme } from '$with/theme';
 
 interface TickerProps {
   color?: string,

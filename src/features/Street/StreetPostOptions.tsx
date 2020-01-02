@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { withTheme } from '../../with/theme';
+import { withTheme } from '$with/theme';
 import {onShare} from './Actions/Share'
 
 type StreetPostOptionsProps = {

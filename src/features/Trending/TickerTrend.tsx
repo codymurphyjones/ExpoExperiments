@@ -2,9 +2,9 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import { View, Text } from 'react-native';
 
-import { withTheme } from '../../with/theme';
+import { withTheme } from '$with/theme';
 
-import { iex } from '../../utils'
+import { iex } from '$utils'
 import Quote from "node-iex-cloud/lib/types/Quote";
 
 type TickerTrendProps = {

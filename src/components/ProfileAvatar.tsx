@@ -1,7 +1,7 @@
 // TabBar.js
 import React, {useState, useMemo} from 'react';
 import { View, StyleSheet, Image, Text, TouchableHighlight } from 'react-native';
-import { withTheme } from '../with/theme';
+import { withTheme } from '$with/theme';
 import Button from './Button';
 
 type ProfileAvatarProps = {

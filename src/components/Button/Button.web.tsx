@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { withTheme } from '../../with/theme';
+import { withTheme } from '$with/theme';
 import { ButtonProps } from "./types"
 
 

@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import { StyleSheet, Text, View } from 'react-native';
-import { ThemeContextProvider } from '../with/theme'
+import { ThemeContextProvider } from '$with/theme'
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -16,8 +16,8 @@ import Trending from './Trending';
 import Login from './Login';
 import AuthLoading from './AuthLoading';
 
-import TabBar from '../components/TabBar';
-import {UserContextProvider} from '../with/user'
+import TabBar from '$components/TabBar';
+import {UserContextProvider} from '$with/user'
 
 /*
 react-navigation

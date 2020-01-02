@@ -3,7 +3,7 @@ import React, {forwardRef} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-import { withTheme } from '../with/theme';
+import { withTheme } from '$with/theme';
 
 type IconTextBoxProps = {
 	width?: number,

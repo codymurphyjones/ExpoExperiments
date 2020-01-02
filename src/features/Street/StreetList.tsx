@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import StreetPost from './StreetPost'
 
-import { withTheme } from '../../with/theme';
+import { withTheme } from '$with/theme';
 
 type StreetPostListProps = {
   posts: any,

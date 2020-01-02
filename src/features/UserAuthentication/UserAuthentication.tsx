@@ -2,15 +2,15 @@
 import React, {useState, useEffect, useRef, forwardRef} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import Button from '../../components/Button';
-import IconTextBox from '../../components/IconTextBox';
+import Button from '$components/Button';
+import IconTextBox from '$components/IconTextBox';
 
 import {emailValidate, passwordValidate} from './validations';
 import HiddenIconTextBox from './HiddenIconTextBox';
 
-import { withTheme, ThemePropTypes} from '../../with/theme'
+import { withTheme, ThemePropTypes} from '$with/theme'
 
-import { auth } from '../../utils'
+import { auth } from '$utils'
 
 type UserAuthenticationProps = {
   navigation?: any,

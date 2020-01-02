@@ -2,9 +2,9 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Posting from './Posting'
-import { firestore, storage } from "../../utils/firebase"
+import { firestore, storage } from "$utils/firebase"
 
-import { withTheme, ThemePropTypes } from '../../with/theme';
+import { withTheme, ThemePropTypes } from '$with/theme';
 
 type PostingListProps = {
   posts?: any,

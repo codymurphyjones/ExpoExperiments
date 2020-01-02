@@ -1,7 +1,7 @@
 // Main.js
 import React from 'react';
 import { SafeAreaView, ScrollView, View} from 'react-native';
-import { withTheme } from '../../with/theme'
+import { withTheme } from '$with/theme'
 import {ScreenAreaProps} from './types'
 
 const ScreenArea = (props: ScreenAreaProps) => {

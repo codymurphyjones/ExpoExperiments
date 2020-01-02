@@ -2,10 +2,10 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import IconTextBox from '../../components/IconTextBox';
+import IconTextBox from '$components/IconTextBox';
 
 
-import { withTheme } from '../../with/theme'
+import { withTheme } from '$with/theme'
 
 type HiddenIconTextBoxProps = {
   show?: boolean,

@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-import { withTheme } from '../with/theme';
+import { withTheme } from '$with/theme';
 
 type ProfileAvatarProps = {
 	color?: string,

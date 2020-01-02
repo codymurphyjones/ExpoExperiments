@@ -3,9 +3,9 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Ticker from '../../components/Ticker'
+import Ticker from '$components/Ticker'
 import TickerTrend from './TickerTrend'
-import { withTheme } from '../../with/theme';
+import { withTheme } from '$with/theme';
 
 type TrendPostProps = {
 	src: any,

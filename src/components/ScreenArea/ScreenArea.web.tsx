@@ -3,7 +3,7 @@ import React from 'react';
 import './style.css';
 import {ScreenAreaProps} from './types'
 
-import { withTheme } from '../../with/theme'
+import { withTheme } from '$with/theme'
 
 const ScreenArea = (props: ScreenAreaProps) => {
   return (

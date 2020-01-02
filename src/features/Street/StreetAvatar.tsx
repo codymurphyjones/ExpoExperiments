@@ -1,13 +1,13 @@
 // TabBar.js
 import React, { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import Ticker from '../../components/Ticker'
-import { withTheme, ThemePropTypes } from '../../with/theme';
+import Ticker from '$components/Ticker'
+import { withTheme, ThemePropTypes } from '$with/theme';
 import {Placeholder, PlaceholderMedia, ShineOverlay} from 'rn-placeholder'
-import {withPlaceholder} from '../../with/placeholder'
+import {withPlaceholder} from '$with/placeholder'
 
 
-import { storage } from '../../utils'
+import { storage } from '$utils'
 
 type StreetAvatarComponents = {
   theme?: ThemePropTypes,
