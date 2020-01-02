@@ -4,9 +4,9 @@ import { View, Text, StyleSheet, } from 'react-native';
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Ticker from '$components/Ticker'
+import Ticker from 'Components/Ticker'
 
-import { withTheme } from '$with/theme';
+import { withTheme } from 'With/theme';
 
 type PostingProps = {
 	ticker?: string,

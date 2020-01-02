@@ -2,13 +2,13 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-import ScreenArea from '$components/ScreenArea';
+import ScreenArea from 'Components/ScreenArea';
 
-import { withTheme } from '$with/theme'
-import {withUser} from '$with/user'
+import { withTheme } from 'With/theme'
+import {withUser} from 'With/user'
 
 
-import { auth, firestore, storage } from '$utils'
+import { auth, firestore, storage } from 'Utils'
 
     /*
 type AuthLoadingProps = {

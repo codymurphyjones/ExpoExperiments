@@ -1,6 +1,6 @@
 // Main.js
 
-import { firestore } from '$utils'
+import { firestore } from 'Utils'
 
     
 

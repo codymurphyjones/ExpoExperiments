@@ -1,16 +1,16 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import SearchBox from '$components/SearchBox';
-import ProfileAvatar from '$components/ProfileAvatar';
-import UserAccountDetails from '$components/UserAccountDetails';
-import PostingList from '$features/Posting/PostingList';
-import ScreenArea from '$components/ScreenArea';
+import SearchBox from 'Components/SearchBox';
+import ProfileAvatar from 'Components/ProfileAvatar';
+import UserAccountDetails from 'Components/UserAccountDetails';
+import PostingList from 'Features/Posting/PostingList';
+import ScreenArea from 'Components/ScreenArea';
 
-import { withTheme } from '$with/theme'
-import {withUser} from "$with/user"
+import { withTheme } from 'With/theme'
+import {withUser} from "With/user"
 
-import { firestore, storage } from '$utils'
+import { firestore, storage } from 'Utils'
 
 /*
 type ProfileScreenProps = {

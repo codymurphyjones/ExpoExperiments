@@ -2,13 +2,13 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import ScreenArea from '$components/ScreenArea';
+import ScreenArea from 'Components/ScreenArea';
 
-import { withTheme } from '$with/theme'
+import { withTheme } from 'With/theme'
 
-import { auth } from '$utils'
+import { auth } from 'Utils'
 
-import Settings from '$features/Settings/Settings'
+import Settings from 'Features/Settings/Settings'
 
 
 type MainProps = {

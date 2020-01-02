@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { withTheme, ThemePropTypes } from '$with/theme'
+import { withTheme, ThemePropTypes } from 'With/theme'
 /*
 type SettingsScreenProps = {
   setTheme?: any,

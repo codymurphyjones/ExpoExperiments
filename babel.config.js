@@ -18,11 +18,11 @@ module.exports = function(api) {
       [require.resolve('babel-plugin-module-resolver'), {
 		    "root": "./src",
         "alias": {
-          "$components": "./src/components",
-          "$screens": "./src/screens",
-          "$features": "./src/features",
-          "$utils": "./src/utils",
-          "$with": "./src/with"
+          "Components": "./src/components",
+          "Screens": "./src/screens",
+          "Features": "./src/features",
+          "Utils": "./src/utils",
+          "With": "./src/with"
         }
       }]
     ]

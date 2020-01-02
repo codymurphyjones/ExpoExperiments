@@ -8,7 +8,7 @@ import { ButtonProps } from "./types"
 
 
 
-import { withTheme } from '$with/theme';
+import { withTheme } from 'With/theme';
 
 const Button = ({theme, ...props}: ButtonProps) => {
 

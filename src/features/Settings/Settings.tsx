@@ -2,12 +2,12 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import ScreenArea from '$components/ScreenArea';
-import Button from '$components/Button';
+import ScreenArea from 'Components/ScreenArea';
+import Button from 'Components/Button';
 
-import { withTheme, ThemePropTypes } from '$with/theme'
+import { withTheme, ThemePropTypes } from 'With/theme'
 
-import { auth } from '$utils'
+import { auth } from 'Utils'
 import {loadTrending} from './actions'
 
 type SettingSubComponentsProps = {

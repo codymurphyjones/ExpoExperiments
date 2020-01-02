@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import StreetAvatar from './StreetAvatar'
-import { withTheme } from '$with/theme';
+import { withTheme } from 'With/theme';
 import StreetPostOptions from './StreetPostOptions'
 import StreetComments from './StreetComments'
 

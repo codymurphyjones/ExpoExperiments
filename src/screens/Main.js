@@ -1,13 +1,13 @@
 // Main.js
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import SearchBox from '$components/SearchBox';
-import StreetList from '$features/Street/StreetList';
-import ScreenArea from '$components/ScreenArea';
+import SearchBox from 'Components/SearchBox';
+import StreetList from 'Features/Street/StreetList';
+import ScreenArea from 'Components/ScreenArea';
 
-import { withTheme } from '$with/theme'
+import { withTheme } from 'With/theme'
 
-import { firestore } from '$utils'
+import { firestore } from 'Utils'
 
 /*
 type MainProps = {
