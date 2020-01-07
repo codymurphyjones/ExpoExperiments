@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import TrendPost from './TrendPost'
 
-import { withTheme } from '../../with/theme';
+import { withTheme } from 'With/theme';
 
 type TrendingListProps = {
   posts?: any

@@ -3,7 +3,7 @@ import React, {forwardRef} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-import { withTheme } from '../with/theme';
+import { withTheme } from 'With/theme';
 
 type IconTextBoxProps = {
 	width?: number,
@@ -13,13 +13,15 @@ type IconTextBoxProps = {
 	icon?: string,
 	placeholder?: string,
 	password?: boolean,
-	borderColor?: string
+	borderColor?: string,
+	keyboardType?: string,
+	onEndEditing?: void
   }
 
   
 
 const IconTextBox = React.forwardRef(({
-	password,placeholder,width,borderColor,icon,onSubmit,onChangeText
+	password,placeholder,width,borderColor,icon,onSubmit,onChangeText, keyboardType, onEndEditing
   }: IconTextBoxProps, ref) => {
 
 	function onSubmitEditing(e) {
@@ -44,8 +46,8 @@ const IconTextBox = React.forwardRef(({
 				 alignItems: 'center'
    			}}>
 				<Icon name={icon || "search"} style={{ fontSize: 15, padding: 5, paddingRight:10 }} />
-				<TextInput ref={ref} onSubmitEditing={onSubmit} onChangeText={onChangeText}
-						 placeholder={placeholder || "Enter search"} secureTextEntry={password || false} style={{ fontSize:12, width: "80%", height: 32 }} />
+				<TextInput onEndEditing={onEndEditing} ref={ref} onSubmitEditing={onSubmit} onChangeText={onChangeText}
+						 placeholder={placeholder || "Enter search"} secureTextEntry={password || false} style={{ fontSize:12, width: "80%", height: 32 }} keyboardType={keyboardType} />
 			</View>
 		</View>
 	</View>

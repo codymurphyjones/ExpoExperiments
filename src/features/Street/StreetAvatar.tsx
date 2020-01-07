@@ -1,12 +1,13 @@
 // TabBar.js
 import React, { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import Ticker from '../../components/Ticker'
-import { withTheme, ThemePropTypes } from '../../with/theme';
+import Ticker from 'Components/Ticker'
+import { withTheme, ThemePropTypes } from 'With/theme';
+import {Placeholder, PlaceholderMedia, ShineOverlay} from 'rn-placeholder'
+import {withPlaceholder} from 'With/placeholder'
 
 
-
-import { storage } from '../../utils'
+import { storage } from 'Utils'
 
 type StreetAvatarComponents = {
   theme?: ThemePropTypes,
@@ -22,6 +23,7 @@ type StreetAvatarComponents = {
 const StreetAvatar = (props: StreetAvatarComponents) => {
   const [name, setName] = useState("");
   const [image,setImage] = useState("./");
+  const [load,setLoad] = useState(false);
 
   useEffect(() => {
     let query = props.user.get()
@@ -33,13 +35,24 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
           
           let data = snapshot.data()
 
-          storage.ref(data.profile).getDownloadURL().then((url: string) => { setImage(url);  });
+          storage.ref(data.profile).getDownloadURL().then((url: string) => { Image.prefetch(url); setImage(url);  });
           setName(data.firstname + " " + data.lastname);
       })
     .catch(err => {
       
     });
+    
   },[]);
+
+  async function onLoadEndRun() {
+    
+    await setTimeout(() => {
+      setLoad(true);
+      props.OnLoadEnd();
+    }, 1000);
+  }
+
+  
   
 	
   return (
@@ -54,9 +67,39 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                 alignItems: 'center',
                 alignSelf: 'center'
 		}}>
-        <Image onLoadStart={props.OnLoadStart}
-            onLoadEnd={props.OnLoadEnd}
-            style={styles.stretch} source={{uri:image}} ></Image>
+            {React.useMemo(() => {  return withPlaceholder(load, 
+                (
+                  <Image 
+                        onLoadStart={props.OnLoadStart} 
+                        onLoadEnd={onLoadEndRun} 
+                        style={styles.stretch} 
+                        source={{uri: image}}  >
+                        
+                  </Image>
+                ),
+                (
+              <View
+			          style={{
+				        justifyContent: 'center',
+				        borderRadius: 30,
+                width: 70,
+                flex: 1,
+                alignItems: 'center',
+                alignSelf: 'center'
+		          }}>
+                      <Placeholder Animation={ShineOverlay}>
+                      <PlaceholderMedia size={70} />
+                      <Image 
+                        onLoadStart={props.OnLoadStart} 
+                        onLoadEnd={onLoadEndRun} 
+                        style={[styles.stretch, {opacity: 0, width: 1, height: 1}]} 
+                        source={{uri: image}}  >
+                        
+                      </Image></Placeholder></View>
+                )
+                )
+                },[image, props.OnLoadStart, props.OnLoadEnd, load])}
+
         <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
 		<Text style={{color: props.color, width: 80}}>2 mins ago</Text>

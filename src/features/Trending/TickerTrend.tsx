@@ -1,10 +1,10 @@
 // TabBar.js
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import { View, Text } from 'react-native';
 
-import { withTheme } from '../../with/theme';
+import { withTheme } from 'With/theme';
 
-import { iex } from '../../utils'
+import { iex } from 'Utils'
 import Quote from "node-iex-cloud/lib/types/Quote";
 
 type TickerTrendProps = {
@@ -23,14 +23,18 @@ const TickerTrend = (props: TickerTrendProps) => {
     iex
     .symbol(stock).quote()
     .then((res : Quote) => { 
+      try {
         setdifference(res.changePercent);
         setPrice(res.latestPrice);
         setVisible(true);
+      }
+      catch {}
+      
 	
 		})
   }, [stock]);
 
-  return (
+  return useMemo(() =>(
     <View
     style={{
       flex: 1,
@@ -43,7 +47,7 @@ const TickerTrend = (props: TickerTrendProps) => {
 		{(difference > 0) ? "+" : ""}{(difference * 100).toFixed(2)}%
 	</Text>
 </View>
-  );
+  ),[difference,visible,stock,price]);
 };
 
 export default withTheme(TickerTrend);

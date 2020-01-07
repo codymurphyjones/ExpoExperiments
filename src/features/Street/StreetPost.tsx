@@ -1,8 +1,8 @@
 // TabBar.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight  } from 'react-native';
 import StreetAvatar from './StreetAvatar'
-import { withTheme } from '../../with/theme';
+import { withTheme } from 'With/theme';
 import StreetPostOptions from './StreetPostOptions'
 import StreetComments from './StreetComments'
 
@@ -16,7 +16,7 @@ type StreetPostProps = {
 }
 
 const StreetPost = (props: StreetPostProps) => {
-	const [visible,setVisible] = useState(false);
+	const [visible,setVisible] = useState(true);
 	const [showComments,setShowComments] = useState(false);
 	
 	const [count, setCount] = useState(props.count | 0);
@@ -36,14 +36,13 @@ const StreetPost = (props: StreetPostProps) => {
 		}
 	   }
 	   
-	   const loadStart= (e) => {setVisible(false); console.log("I do for sure")}
-	   const loadEnd=  (e) => {setVisible(true); console.log("Do I happen?") }
+	   const loadEnd=  (e) => {setVisible(true); }
        
-  return (	
+  return useMemo(() => (	
     <View style={[style.container, {opacity: (visible ? 1: 0)}]}>	
 		<View style={[style.container, { borderBottomWidth: 0, visibility: (visible ? "visible": "hidden")}]}>
 			<View style={style.head}>
-                <StreetAvatar OnLoadStart={loadStart} OnLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
+                <StreetAvatar OnLoadEnd={loadEnd} user={props.user} name={props.name} ticker={props.ticker} color={props.textColor} />
 			</View>
 			<View style={style.content}>
 				<Text style={{ color: props.textColor}}>{props.children}</Text>
@@ -52,7 +51,7 @@ const StreetPost = (props: StreetPostProps) => {
 		<StreetPostOptions showComments={showComments} OnPressComment={()=>{ setShowComments(!showComments)}} OnUpPress={OnUpPress} OnDownPress={OnDownPress} shares={6} count={count} vote={vote} comments={10} />
 		<StreetComments showComments={showComments} />
 	</View>
-  );
+  ),[props, visible, showComments, count, vote]);
 };
 
 const style = StyleSheet.create({

@@ -1,5 +1,5 @@
 // Main.js
-import {Image} from "react-native-expo-image-cache";
+import {Image} from 'react-native'
 
 export {Image as default}
 

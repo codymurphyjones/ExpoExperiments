@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-import { withTheme } from '../with/theme';
+import { withTheme } from 'With/theme';
 
 type ProfileAvatarProps = {
 	color?: string,
@@ -24,7 +24,7 @@ const UserAccountDetails = props => {
 		<Text style={{color: "#a0a0a0"}}>{props.location}</Text>
 		
 		<Text style={{paddingTop: 20, fontSize: 16}}>{props.bio}</Text>
-		<View style={[style.container, { backgroundColor: props.theme.backgroundColor || "#fff", flexDirection: 'row' , justifyContent: 'space-between'}]}>
+		<View style={[style.container, { backgroundColor: "#fff", flexDirection: 'row' , justifyContent: 'space-between'}]}>
 				<View style={style.vertical}>
 					<Text>{props.following}</Text>
 					<Text>Following</Text>

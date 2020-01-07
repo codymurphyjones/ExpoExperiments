@@ -1,14 +1,8 @@
 // TabBar.js
-import React, {useState} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React, {useState, useMemo} from 'react';
 import { View, StyleSheet, Image, Text, TouchableHighlight } from 'react-native';
-import { withTheme } from '../with/theme';
+import { withTheme } from 'With/theme';
 import Button from './Button';
-import HideComponent from "./HideComponent"
-
-
-
-import { storage } from '../utils'
 
 type ProfileAvatarProps = {
 	uri?: string
@@ -19,7 +13,7 @@ type ProfileAvatarProps = {
 const ProfileAvatar = (props: ProfileAvatarProps) => {
 	const [visisble,setVisible] = useState(true);
 
-  return (
+  return useMemo(() => (
     	<View style={{ flex: 1,flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 10, width: '100%', }}>
 			<Button padding={2} color="green">New</Button>
 			<View
@@ -32,7 +26,7 @@ const ProfileAvatar = (props: ProfileAvatarProps) => {
 
 			<Button padding={2}  color="#f59d0c">Followed</Button>
 		</View>
-  );
+  ), [visisble, props.uri]);
 };
 
 const styles = StyleSheet.create({

@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import { View } from 'react-native';
 
-import { withTheme } from '../with/theme'
+import { withTheme } from 'With/theme'
 
 type HideComponentProps = {
   show?: boolean,
