@@ -6,7 +6,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "build": "expo build:web",
+	"publish": "expo start --no-dev --minify",
+    "build:web": "expo build:web",
+	"build": "expo build",
     "serve": "cd web-build && now --name tickershareapp-test --prod"
   },
   "dependencies": {

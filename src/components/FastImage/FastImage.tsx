@@ -1,6 +1,15 @@
 // Main.js
-import {Image} from 'react-native'
+import React from "react"
+import {Image, StyleSheet} from 'react-native'
 
-export {Image as default}
+
+function FastImage(props) {
+    const {style, ...ObjProps} = props
+
+    
+    return (<Image style={style}  {...ObjProps} />)
+}
+
+export {FastImage as default}
 
 

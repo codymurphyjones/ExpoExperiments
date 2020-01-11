@@ -1,6 +1,7 @@
 // TabBar.js
 import React, {useState} from 'react';
 import { View, StyleSheet, Text, Image, TouchableHighlight } from 'react-native';
+import FastImage from "./FastImage"
 import { withTheme } from 'With/theme';
 import Button from './Button';
 
@@ -11,7 +12,6 @@ type ProfileAvatarProps = {
 
 
 const ProfileAvatar = (props: ProfileAvatarProps) => {
-	console.log(props.uri)
 	
   return (
     	<View style={{ flex: 1,flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 10, width: '100%', }}>
@@ -21,7 +21,7 @@ const ProfileAvatar = (props: ProfileAvatarProps) => {
 					justifyContent: 'center',
 					borderRadius: 35
 			}}>
-				<Image style={styles.stretch}  source={{uri: props.uri}}  />
+				<FastImage style={styles.stretch} test={styles.stretch}  source={{uri: props.uri}}  />
 			</View>
 
 			<Button padding={2}  color="#f59d0c">Followed</Button>
@@ -29,7 +29,7 @@ const ProfileAvatar = (props: ProfileAvatarProps) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   stretch: {
     width: 100,
     height: 100,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 	borderRadius: 35,
 	backgroundColor: 'red'
   }
-});
+};
 
 
 export default withTheme(ProfileAvatar);

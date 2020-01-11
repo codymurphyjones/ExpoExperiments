@@ -145,7 +145,7 @@ const style = StyleSheet.create({
     height: "100%"
   },
   container2: {
-    width: 300,
+    minWidth: 320,
     alignItems: 'center',
   },
   text: {

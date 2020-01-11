@@ -38,7 +38,7 @@ const ProfileScreen = (props) => {
 
 
 useEffect(() => { 
-  console.log(image)
+
   if(props.User.isLoaded) {
       setName(props.User.name)
       setLocation(props.User.location)
@@ -77,13 +77,10 @@ useEffect(() => {
 });
 
 
-
-
-  console.log(image);
   return (
     <ScreenArea backgroundColor="#fff">
     <View style={[style.container, { backgroundColor: "#fff", paddingTop: 20 }]}>
-	    <View style={style.container}>
+	    <View style={[style.container, { width: "20%" }]}>
         <SearchBox />
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Profile</Text>
         <ProfileAvatar uri={image != "/." ? image : "../../assets/avatar.png"}  />
@@ -102,6 +99,8 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    minWidth: 320
+    
   },
   text: {
     fontWeight: 'bold',

@@ -1,6 +1,7 @@
 {
+"name": "TickerShare",
   "expo": {
-    "name": "TickerShare",
+    
     "slug": "ExpoExperiment",
     "privacy": "public",
     "sdkVersion": "36.0.0",

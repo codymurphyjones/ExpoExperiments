@@ -11,7 +11,7 @@ const AnimImage= animated(Image);
 
 
 const StreetComment = props => {
-  const { minHeight, height, opacity, marginBottom } = useSpring({config: config.gentle,reverse: props.showComments, to: { minHeight: 0, height: '0%', opacity: 0.0, marginBottom: 0, size: 0 }, from: { minHeight: 120, height: '0%', opacity: 1.0, marginBottom: 10}, delay: 1000 })
+  const { minHeight, height, opacity, marginBottom } = useSpring({config: config.gentle,reverse: props.showComments, to: { minHeight: 0, height: '0%', opacity: 0.0, marginBottom: 0, size: 0 }, from: { minHeight: 120, height: '0%', opacity: 1.0, marginBottom: 10}, delay: 600 })
   const { iconHeight, iconWidth} = useSpring({config: config.gentle,reverse: props.showComments, to: { iconHeight: 0, iconWidth: 0 }, from: { iconHeight: 70, iconWidth: 70 }, delay: 1200 })
  
   return useMemo(() => (	

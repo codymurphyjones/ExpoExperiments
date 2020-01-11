@@ -14,7 +14,7 @@ type StreetPostListProps = {
 }
 
 const StreetPostList = (props: StreetPostListProps) => {
-  const { opacity } = useSpring({config: config.gentle, from: { opacity: 0.0 }, to: { opacity: 1.0 }, delay: 500 })
+  const { opacity } = useSpring({config: config.wobbly, from: { opacity: 0.0 }, to: { opacity: 1.0 } })
    
 
   const listItems = Object.keys(props.posts).map((id) => {
