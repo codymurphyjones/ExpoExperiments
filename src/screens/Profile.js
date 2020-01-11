@@ -38,7 +38,7 @@ const ProfileScreen = (props) => {
 
 
 useEffect(() => { 
-  
+  console.log(image)
   if(props.User.isLoaded) {
       setName(props.User.name)
       setLocation(props.User.location)
@@ -49,7 +49,7 @@ useEffect(() => {
       setImage(props.User.profileUrl)
 
    
-      let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
+     let query = postDB.where('User','==',firestore.collection("UserData").doc(props.User.uid)).get()
 		  .then(snapshot => {
 			  if (snapshot.empty) {
 				
@@ -74,19 +74,19 @@ useEffect(() => {
 
   }
       
-},[props.User]);
+});
 
 
 
 
-
+  console.log(image);
   return (
     <ScreenArea backgroundColor="#fff">
     <View style={[style.container, { backgroundColor: "#fff", paddingTop: 20 }]}>
 	    <View style={style.container}>
         <SearchBox />
         <Text style={[style.text, { color: props.theme.color, fontSize: 22, marginTop: 25 }]}>Profile</Text>
-        <ProfileAvatar uri={image != "/." ? image: "../../assets/avatar.png"}  />
+        <ProfileAvatar uri={image != "/." ? image : "../../assets/avatar.png"}  />
 		    
 		    <UserAccountDetails bio={bio} location={location} name={name} following={following} followers={follower} tickers={tickers} />
        

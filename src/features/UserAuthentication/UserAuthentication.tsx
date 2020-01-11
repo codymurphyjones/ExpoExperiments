@@ -64,7 +64,7 @@ const UserAuthentication = (props: UserAuthenticationProps) => {
 }, [])
   
   async function createUser() {
-    console.log(shaAlgorithm); 
+   
     await auth.createUserWithEmailAndPassword(email, shaAlgorithm(password)).then((res)=>{
       const [firstname,lastname] = name.split(" ");
 

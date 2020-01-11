@@ -32,7 +32,7 @@ const TickerTrend = (props: TickerTrendProps) => {
       
 	
 		})
-  }, [stock]);
+  }, []);
 
   return useMemo(() =>(
     <View

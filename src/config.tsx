@@ -1,5 +1,5 @@
 export default {
-	API_KEY: "pk_e6997b14d0a949dc944d822e76f66a31",
+	API_KEY: "pk_3ecdec0b5ca846bb94ebe4c3cc66b449",
 	URL: "",
 	firebaseConfig: {
 		apiKey: "AIzaSyCh9kmM4onvu9vupp_ivEBJbHvRhhU-VQQ",

@@ -61,7 +61,7 @@ const UserRegistration = (props: UserInformationProps) => {
 
   useEffect(() => {
     getHandles();
-    console.log(handle.length < 3, showError);
+  
     if((handle.length < 3 ) || showError) {
         props.canSubmit(false);
     }

@@ -64,6 +64,7 @@ async function getUserData(uid) {
         
         (async () => {
           await storage.ref(data.profile).getDownloadURL().then((url: string) => { 
+            
          let obj = {
             name: data.firstname + " " + data.lastname,
             location: data.location,
@@ -97,15 +98,17 @@ async function getUser(userDB) {
     await getUser(userAuth)
     let postings = await getPostDB();
 
-    
-   props.navigation.navigate("Home", { postings}) 
+   
+    props.navigation.navigate("Home", { postings }) 
     
   }
 
   
     useEffect(() => {
       let unsubscribe = auth.onAuthStateChanged(function(userAuth) {
+        
           if (userAuth) {
+            
               var uid = userAuth.uid;
               var providerData = userAuth.providerData;
 

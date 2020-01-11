@@ -2,10 +2,9 @@ import { IEXCloudClient } from "node-iex-cloud";
 
 import config from '../../config'
 
-const fetch = require("node-fetch");
-
+import axios, { AxiosRequestConfig, AxiosPromise } from 'axios';
  
-const iex = new IEXCloudClient(fetch, {
+const iex = new IEXCloudClient(axios.get, {
   sandbox: true,
   publishable: config.API_KEY,
   version: "stable",

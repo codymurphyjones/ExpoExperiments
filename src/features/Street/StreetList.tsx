@@ -2,8 +2,11 @@
 import React, {useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import StreetPost from './StreetPost'
+import {useSpring,animated, config } from 'react-spring/native'
 
 import { withTheme } from 'With/theme';
+
+const AnimView = animated(View);
 
 type StreetPostListProps = {
   posts: any,
@@ -11,6 +14,8 @@ type StreetPostListProps = {
 }
 
 const StreetPostList = (props: StreetPostListProps) => {
+  const { opacity } = useSpring({config: config.gentle, from: { opacity: 0.0 }, to: { opacity: 1.0 }, delay: 500 })
+   
 
   const listItems = Object.keys(props.posts).map((id) => {
     let data = props.posts[id];
@@ -21,9 +26,9 @@ const StreetPostList = (props: StreetPostListProps) => {
   );
 	
   return (
-		<View style={style.container}>
+		<AnimView style={[style.container, {opacity: opacity}]}>
 		  {listItems}
-		</View>
+		</AnimView>
   );
 };
 
@@ -33,7 +38,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   alignSelf: 'stretch',
-  marginTop: 10
+  marginTop: 0
   }
 });
 

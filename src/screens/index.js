@@ -3,6 +3,7 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { fromLeft } from 'react-navigation-transitions';
 
 import { StyleSheet, Text, View } from 'react-native';
 import { ThemeContextProvider } from 'With/theme'
@@ -65,28 +66,12 @@ const TabNavigator = createBottomTabNavigator(
 		showIcon: true,
     
     },
-    lazy: false
+    lazy: true,
+    transitionConfig: () => fromLeft()
   },
   
 
 );
-/*
-inactiveTintColor: '#900',
-    activeTintColor: '#a49',
-    */
-/*
-const AppContainer = createAppContainer(
-  createSwitchNavigator(
-    {
-      AuthLoading: AuthLoading,
-      App: TabNavigator,
-      Auth: Login,
-    },
-    {
-      initialRouteName: 'AuthLoading'
-    }
-  )
-);*/
 
 const AppContainer = createAppContainer(
   createSwitchNavigator(
@@ -96,7 +81,8 @@ const AppContainer = createAppContainer(
       Auth: Login,
     },
     {
-      initialRouteName: 'AuthLoading'
+      initialRouteName: 'AuthLoading',
+      transitionConfig: () => fromLeft(),
     }
   )
 );

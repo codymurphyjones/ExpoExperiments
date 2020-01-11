@@ -5,71 +5,41 @@ import Icon from 'react-native-vector-icons/Feather';
 import StreetAvatar from './StreetAvatar'
 import { withTheme } from 'With/theme';
 import StreetComment from './StreetComment'
+import {animated, config, useSpring } from 'react-spring/native'
+const AnimView = animated(View);
+
 
 type StreetCommentsProps = {
-  showComments?: boolean
+  showComments?: boolean,
+  opacity?: number
 }
 
 
 const StreetComments = (props: StreetCommentsProps) => {
-    if(!props.showComments)
-        return (<></>)
+
+  const {  display } = useSpring({config: config.gentle,reverse: props.showComments, from: { display: 'flex' }, to: {   display: 'none' }, delay: 900 })
+       
+  
+  
        
   return (	
-		<View style={style.container}>
-            <StreetComment />
-            <StreetComment />
-            <StreetComment />
-            <StreetComment />
-            <StreetComment />
-            <StreetComment />
-            <StreetComment />
-        </View>
+		<AnimView style={[style.container, { opacity: props.opacity, display: display }]}>
+            <StreetComment showComments={props.showComments} />
+            <StreetComment showComments={props.showComments} />
+            <StreetComment showComments={props.showComments} />
+        </AnimView>
   );
 };
 
 const style = StyleSheet.create({
   container: {
-	flex: 1,
-	margin: 10,
-	marginBottom: 30,
+	margin: 0,
+  marginBottom: 0,
 	alignSelf: 'stretch',
 	alignItems: 'center',
 	flexDirection: 'column',
   justifyContent: 'space-around',
-  },
-  message: {
-    flex: 1,
-    padding: 10,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    },
-  comment: {
-	flexDirection: 'row',
-  width: '90%',
-  maxWidth: 500,
-  margin: 5,
-  borderRadius: 8,
-  borderWidth: 2,
-  borderColor: '#fce1ab',
-  },
-  icon: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    borderRightWidth: 1,
-    padding: 10,
-    borderRadius: 8,
-    borderColor: '#fce1ab',
-    },
-    stretch: {
-      width: 70,
-      height: 70,
-      resizeMode: 'stretch',
-    borderRadius: 30
-    }
+  }
 });
 
 export default withTheme(StreetComments);

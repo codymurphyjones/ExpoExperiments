@@ -6,6 +6,10 @@ import { withTheme } from 'With/theme';
 import StreetPostOptions from './StreetPostOptions'
 import StreetComments from './StreetComments'
 
+import {useSpring,animated, config } from 'react-spring/native'
+
+const AnimView = animated(View);
+
 type StreetPostProps = {
 	count?: number,
 	children?: React.ReactNode,
@@ -18,7 +22,8 @@ type StreetPostProps = {
 const StreetPost = (props: StreetPostProps) => {
 	const [visible,setVisible] = useState(true);
 	const [showComments,setShowComments] = useState(false);
-	
+	const { opacity } = useSpring({config: config.gentle,reverse: !showComments, from: {  opacity: 0.0 }, to: { opacity: 1.0 }, delay: 300 })
+    
 	const [count, setCount] = useState(props.count | 0);
 	const [vote, setVote] = useState(props.count | 0);
     
@@ -49,7 +54,7 @@ const StreetPost = (props: StreetPostProps) => {
 			</View>
 		</View>
 		<StreetPostOptions showComments={showComments} OnPressComment={()=>{ setShowComments(!showComments)}} OnUpPress={OnUpPress} OnDownPress={OnDownPress} shares={6} count={count} vote={vote} comments={10} />
-		<StreetComments showComments={showComments} />
+		<StreetComments opacity={opacity} showComments={showComments} />
 	</View>
   ),[props, visible, showComments, count, vote]);
 };
