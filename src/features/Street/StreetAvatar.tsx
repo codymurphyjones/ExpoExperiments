@@ -1,6 +1,7 @@
 // TabBar.js
 import React, { useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import FastImage from 'Components/FastImage';
 import Ticker from 'Components/Ticker'
 import { withTheme, ThemePropTypes } from 'With/theme';
 import {Placeholder, PlaceholderMedia, ShineOverlay} from 'rn-placeholder'
@@ -35,7 +36,7 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
           
           let data = snapshot.data()
 
-          storage.ref(data.profile).getDownloadURL().then((url: string) => { Image.prefetch(url); setImage(url);  });
+          storage.ref(data.profile).getDownloadURL().then((url: string) => {  setImage(url);  });
           setName(data.firstname + " " + data.lastname);
       })
     .catch(err => {
@@ -53,7 +54,7 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
   }
 
   
-  
+
 	
   return (
     <View style={{ flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', paddingTop: 10, justifyContent: 'space-around' }}>
@@ -67,15 +68,22 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                 alignItems: 'center',
                 alignSelf: 'center'
 		}}>
-            {React.useMemo(() => {  return withPlaceholder(load, 
+                  
+                  <FastImage
+                        onLoadStart={props.OnLoadStart} 
+                        onLoadEnd={onLoadEndRun} 
+                        style={styles.stretch} 
+                        source={{uri: image}}  >
+                  </FastImage>
+				  {React.useMemo(() => {  return withPlaceholder(load, 
                 (
-                  <Image 
+                  <FastImage
                         onLoadStart={props.OnLoadStart} 
                         onLoadEnd={onLoadEndRun} 
                         style={styles.stretch} 
                         source={{uri: image}}  >
                         
-                  </Image>
+                  </FastImage>
                 ),
                 (
               <View
@@ -89,16 +97,17 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
 		          }}>
                       <Placeholder Animation={ShineOverlay}>
                       <PlaceholderMedia size={70} />
-                      <Image 
+                      <FastImage 
                         onLoadStart={props.OnLoadStart} 
                         onLoadEnd={onLoadEndRun} 
-                        style={[styles.stretch, {opacity: 0, width: 1, height: 1}]} 
+                        style={styles.placeholder} 
                         source={{uri: image}}  >
                         
-                      </Image></Placeholder></View>
+                      </FastImage></Placeholder></View>
                 )
                 )
                 },[image, props.OnLoadStart, props.OnLoadEnd, load])}
+                
 
         <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
@@ -108,14 +117,21 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   stretch: {
     width: 70,
     height: 70,
     resizeMode: 'stretch',
 	borderRadius: 30
+  }, 
+  placeholder: {
+    width: 70,
+    height: 70,
+    resizeMode: 'stretch',
+	borderRadius: 30,
+	opacity: 0, width: 1, height: 1
   }
-});
+};
 
 
 export default withTheme(StreetAvatar);

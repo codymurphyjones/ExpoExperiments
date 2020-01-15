@@ -20,7 +20,7 @@ type StreetPostProps = {
 }
 
 const StreetPost = (props: StreetPostProps) => {
-	const [visible,setVisible] = useState(true);
+	const [visible,setVisible] = useState(false);
 	const [showComments,setShowComments] = useState(false);
 	const { opacity } = useSpring({config: config.gentle,reverse: !showComments, from: {  opacity: 0.0 }, to: { opacity: 1.0 }, delay: 300 })
     
