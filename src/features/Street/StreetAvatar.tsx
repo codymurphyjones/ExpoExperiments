@@ -51,11 +51,8 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
       props.OnLoadEnd();
   }
 
-<<<<<<< HEAD
-=======
   
 
->>>>>>> 20b0207b77a5c294344a29e7103625853b722bd1
 	
   return (
     <View style={{ flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', paddingTop: 10, justifyContent: 'space-around' }}>
@@ -69,21 +66,8 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                 alignItems: 'center',
                 alignSelf: 'center'
 		}}>
-<<<<<<< HEAD
-        {withPlaceholder(load,(
-        <FastImage 
-        style={styles.stretch} 
-        source={{uri: image}}  >
-        
-      </FastImage>),(<View
-=======
                   
-                  <FastImage
-                        onLoadStart={props.OnLoadStart} 
-                        onLoadEnd={onLoadEndRun} 
-                        style={styles.stretch} 
-                        source={{uri: image}}  >
-                  </FastImage>
+                  
 				  {React.useMemo(() => {  return withPlaceholder(load, 
                 (
                   <FastImage
@@ -96,7 +80,6 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                 ),
                 (
               <View
->>>>>>> 20b0207b77a5c294344a29e7103625853b722bd1
 			          style={{
 				        justifyContent: 'center',
 				        borderRadius: 30,
@@ -110,13 +93,6 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                       <FastImage 
                         onLoadStart={props.OnLoadStart} 
                         onLoadEnd={onLoadEndRun} 
-<<<<<<< HEAD
-                        style={styles.stretchHide} 
-                        source={{uri: image}}  >
-                        
-                      </FastImage></Placeholder></View>))}
-            
-=======
                         style={styles.placeholder} 
                         source={{uri: image}}  >
                         
@@ -126,7 +102,6 @@ const StreetAvatar = (props: StreetAvatarComponents) => {
                 },[image, props.OnLoadStart, props.OnLoadEnd, load])}
                 
 
->>>>>>> 20b0207b77a5c294344a29e7103625853b722bd1
         <Text style={{color: props.color, fontWeight: 'bold', marginTop: 15}}>{name}</Text>
 		</View>
 		<Text style={{color: props.color, width: 80}}>2 mins ago</Text>
