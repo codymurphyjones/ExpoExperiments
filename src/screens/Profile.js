@@ -77,6 +77,8 @@ useEffect(() => {
 });
 
 
+
+
   return (
     <ScreenArea backgroundColor="#fff">
     <View style={[style.container, { backgroundColor: "#fff", paddingTop: 20 }]}>
