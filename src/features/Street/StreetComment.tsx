@@ -11,13 +11,13 @@ const AnimImage= animated(Image);
 
 
 const StreetComment = props => {
-  const { minHeight, height, opacity, marginBottom } = useSpring({config: config.gentle,reverse: props.showComments, to: { minHeight: 0, height: '0%', opacity: 0.0, marginBottom: 0, size: 0 }, from: { minHeight: 120, height: '0%', opacity: 1.0, marginBottom: 10}, delay: 1000 })
-  const { iconHeight, iconWidth} = useSpring({config: config.gentle,reverse: props.showComments, to: { iconHeight: 0, iconWidth: 0 }, from: { iconHeight: 70, iconWidth: 70 }, delay: 1200 })
+  const { minHeight, height, opacity, marginBottom } = useSpring({config: config.gentle,reverse: props.showComments, to: { minHeight: 0, height: '0%', opacity: 0.0, marginBottom: 0, size: 0 }, from: { minHeight: 120, height: '0%', opacity: 1.0, marginBottom: 10}, delay: 200 })
+  const { iconHeight, iconWidth, iconDisplay} = useSpring({config: config.gentle,reverse: props.showComments, to: { iconHeight: 0, iconWidth: 0, iconDisplay: 'none' }, from: { iconHeight: 70, iconWidth: 70, iconDisplay: "flex" }, delay: 1000 })
  
   return useMemo(() => (	
 			<AnimView style={[style.comment, {minHeight: minHeight, opacity, height: height, marginBottom: marginBottom}]}>
                 <View style={style.icon}>
-                  <AnimImage style={[style.stretch, {height: iconHeight, width: iconWidth}]} source={require('../../../assets/avatar.png')} ></AnimImage>
+                  <AnimImage style={[style.stretch, {height: iconHeight, width: iconWidth, display: iconDisplay}]} source={require('../../../assets/avatar.png')} ></AnimImage>
                   <Text>Cody Jones</Text>
                 </View>
                 <View style={style.message}>

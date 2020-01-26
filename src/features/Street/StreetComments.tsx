@@ -17,7 +17,7 @@ type StreetCommentsProps = {
 
 const StreetComments = (props: StreetCommentsProps) => {
 
-  const {  display } = useSpring({config: config.gentle,reverse: props.showComments, from: { display: 'flex' }, to: {   display: 'none' }, delay: 900 })
+  const {  display } = useSpring({config: config.gentle,reverse: props.showComments, from: { display: 'flex' }, to: {   display: 'none' } })
        
   
   

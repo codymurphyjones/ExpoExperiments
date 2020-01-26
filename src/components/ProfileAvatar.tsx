@@ -11,7 +11,7 @@ type ProfileAvatarProps = {
 
 
 const ProfileAvatar = (props: ProfileAvatarProps) => {
-	console.log(props.uri)
+
 	
   return (
     	<View style={{ flex: 1,flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', paddingTop: 10, width: '100%', }}>

@@ -38,7 +38,7 @@ const ProfileScreen = (props) => {
 
 
 useEffect(() => { 
-  console.log(image)
+
   if(props.User.isLoaded) {
       setName(props.User.name)
       setLocation(props.User.location)
@@ -79,7 +79,6 @@ useEffect(() => {
 
 
 
-  console.log(image);
   return (
     <ScreenArea backgroundColor="#fff">
     <View style={[style.container, { backgroundColor: "#fff", paddingTop: 20 }]}>
